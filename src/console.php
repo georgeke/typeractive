@@ -10,13 +10,25 @@
 
 <?php
 
-try {
-	$client = new MongoClient();
-	$db = $client->selectDB('type_db');
-} catch ( MongoConnectionException $e ) {
-	echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
-	exit();
-}
+include 'db.php';
+include 'config.php';
+
+$db = new DB($config);
+
+// CREATING
+/*
+$paragraph = array(
+	'type' => 'paragraph',
+	'text' => 'PARAGRAPH_TEXT'
+);
+$db->createParagraph('COLLECTION_NAME', $paragraph);*/
+
+// READING
+/*
+$p = $db->readParagraphs('COLLECTION_NAME');
+foreach($p as $line) {
+	echo $line['text'];
+}*/
 
 ?>	
 

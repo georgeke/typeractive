@@ -1,4 +1,4 @@
-<?php namespace Typeractive\DB;
+<?php
 
 class DB {
 	private $db;
@@ -11,119 +11,68 @@ class DB {
 			echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
 			exit();
 		}
+		echo '<p>Ye boi.</p>';
 	}
 
 	/**
-	 * get one article by id
+	 * Creates new paragraph in given collection
+	 * @param string $collection
+	 * @param array $paragraph
+	 * @return boolean
+	 */
+	public function createParagraph($collection, $paragraph){
+		$category = null;
+		try {
+			$category = $this->db->selectCollection($collection);
+		} catch (Exception $e) {
+			$category = $this->db->createCollection($collection);
+		}
+		return $result = $category->save($paragraph);
+	}
+
+	/**
+	 * Get array of paragraph objects, with field text
 	 * @return array
 	 */
-	public function getById($id,$collection){
-		// Convert strings of right length to MongoID
-		if (strlen($id) == 24){
-			$id = new \MongoId($id);
+	public function readParagraphs($collection){
+		$paragraphs = array();
+
+		try {
+			$category = $this->db->selectCollection($collection);
+			$cursor = $category->find(array('type' => 'paragraph'));
+
+			foreach ($cursor as $paragraph) {
+				array_push($paragraphs, $paragraph);
+			}
+		} catch (Exception $e) {
+			echo "<p>Could not find collection in getParagraphs.</p>";
+			exit();
 		}
-		$table = $this->db->selectCollection($collection);
-		$cursor  = $table->find(array('_id' => $id));
-		$article = $cursor->getNext();
 
-		if (!$article ){
-			return false ;
-		}
-		return $article;
+		return $paragraphs;
 	}
+
 	/**
-	 * get all data in collection and paginator
-	 *
-	 * @return multi array 
-	 */
-	public function get($page,$collection){
-
-		$currentPage = $page;
-		$articlesPerPage = $this->limit;
-
-		//number of article to skip from beginning
-		$skip = ($currentPage - 1) * $articlesPerPage; 
-
-		$table = $this->db->selectCollection($collection);
-
-		$cursor = $table->find();
-		//total number of articles in database
-		$totalArticles = $cursor->count(); 
-		//total number of pages to display
-		$totalPages = (int) ceil($totalArticles / $articlesPerPage); 
-
-		$cursor->sort(array('saved_at' => -1))->skip($skip)->limit($articlesPerPage);
-		//$cursor = iterator_to_array($cursor);
-		$data=array($currentPage,$totalPages,$cursor);
-
-		return $data;
-	}
-	/**
-	 * Create article
+	 * Update a paragraph.
 	 * @return boolean
 	 */
-	public function create($collection,$article){
-
-		$table 	 = $this->db->selectCollection($collection);
-		return $result = $table->insert($article);
-	}
-	/**
-	 * delete article via id
-	 * @return boolean
-	 */
-	public function delete($id,$collection){
-		// Convert strings of right length to MongoID
-		if (strlen($id) == 24){
-			$id = new \MongoId($id);
-		}
-		$table 	 = $this->db->selectCollection($collection);
-		$result = $table->remove(array('_id'=>$id));
-		if (!$id){
-			return false;
-		}
-		return $result;
-
-	}
-	/**
-	 * Update article
-	 * @return boolean
-	 */
-	public function update($id,$collection,$article){
-		// Convert strings of right length to MongoID
-		if (strlen($id) == 24){
-			$id = new \MongoId($id);
-		}
-		$table 	 = $this->db->selectCollection($collection);
-		$result  = $table->update(
-				array('_id' => new \MongoId($id)), 
-				array('$set' => $article)
+	public function update($id, $collection, $newPara){
+		$category 	 = $this->db->selectCollection($collection);
+		$result = $category->update(
+			array('_id' => $id), 
+			array('$set' => $newPara)
 		);
-		if (!$id){
-			return false;
-		}
-		return $result;
 
+		return $result;
 	}
+
 	/**
-	 * create and update comment
+	 * Delete paragraph. Probably not used.
 	 * @return boolean
 	 */
-	public function commentId($id,$collection,$comment){
-		
-		$postCollection = $this->db->selectCollection($collection);
-		$post = $postCollection->findOne(array('_id' => new \MongoId($id)));
-
-		if (isset($post['comments'])) {
-			$comments = $post['comments'];
-		}else{
-			$comments = array();
-		}	                
-		array_push($comments, $comment);
-
-		return $postCollection->update(
-						array('_id' => new \MongoId($id)), 
-						array('$set' => array('comments' => $comments))
-		);
+	public function deleteParagraph($id, $collection){
+		$category = $this->db->selectCollection($collection);
+		$result = $category->remove(array('_id' => $id));
+		return $result;
 	}
-
 }
