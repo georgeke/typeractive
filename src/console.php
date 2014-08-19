@@ -8,6 +8,18 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
+<?php
+
+try {
+	$client = new MongoClient();
+	$db = $client->selectDB('type_db');
+} catch ( MongoConnectionException $e ) {
+	echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
+	exit();
+}
+
+?>	
+
 <body>
 
 <article>

@@ -2,6 +2,7 @@ Scraper = {
 	base: 'http://en.wikipedia.org/w/api.php?format=json&callback=?',
 
 	parsePage: function() {
+		debugger;
 		//wgCrossSiteAJAXdomains = ['*']];
 
 		var articleName = document.getElementById('urlForm').value;
@@ -14,8 +15,8 @@ Scraper = {
 
 		$.getJSON(this.base, payload, function(data) {
 			debugger;
-			pages = data['query']['pages'];
-			text = {};
+			var pages = data['query']['pages'];
+			var text = {};
 
 			for(var key in pages) {
 				if(pages.hasOwnProperty(key)) {
@@ -26,29 +27,16 @@ Scraper = {
 			for (var title in text) {
 				var textObj = $.parseHTML(text[title]);
 				var paras = [];
+				var all = '';
 				for (var i=0 ; i<textObj.length ; ++i) {
 					// Get text from all paragraphs that have a period in them.
 					var innerText = textObj[i]['innerText']
 					if (textObj[i]['tagName'] === "P" && innerText.indexOf(".") > -1) {
-						paras.push(innerText)
+						all += innerText;
+						paras.push(innerText);
 					}
 				}
-
-				/*
-				var temp = $('<div></div');
-				temp.html(text[title]);
-				var paras = $('p', temp)
-
-				var all = ''
-				alert(paras.length)
-				for (var p in paras) {
-					if (paras.hasOwnProperty(p))
-						$('#output').append(paras[p]);
-				}*/
-
-				//$('#output').html(all);
-
-
+				$('#output').html(all);
 			}
 		});
 	}
