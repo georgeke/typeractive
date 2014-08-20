@@ -1,20 +1,17 @@
 Scraper = {
 	base: 'http://en.wikipedia.org/w/api.php?format=json&callback=?',
+	paras: null,
 
 	parsePage: function() {
-		debugger;
-		//wgCrossSiteAJAXdomains = ['*']];
-
 		var articleName = document.getElementById('urlForm').value;
-
 		var payload = {
 			action: 'query',
 			prop: 'extracts',
 			titles: articleName,
 		};
 
+		// Get array of all paragraphs, placed in paras
 		$.getJSON(this.base, payload, function(data) {
-			debugger;
 			var pages = data['query']['pages'];
 			var text = {};
 
@@ -37,6 +34,21 @@ Scraper = {
 					}
 				}
 				$('#output').html(all);
+				Scraper.paras = paras;
+			}
+
+			debugger;
+			// Send post request to database
+			for (var i = 0 ; i < Scraper.paras.length ; ++i) {
+				$.ajax({
+					url: "http://localhost/typeractive/dbFunc.php",
+					type: "POST",
+					data: {'collection':articleName, 'text':Scraper.paras[i]},
+					success: function(data, text) {
+						alert("IT WOKRED");
+						$("#msg").html(data);
+					}
+				});
 			}
 		});
 	}

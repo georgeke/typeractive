@@ -11,7 +11,6 @@ class DB {
 			echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
 			exit();
 		}
-		echo '<p>Ye boi.</p>';
 	}
 
 	/**
@@ -27,7 +26,19 @@ class DB {
 		} catch (Exception $e) {
 			$category = $this->db->createCollection($collection);
 		}
-		return $result = $category->save($paragraph);
+
+		// Add unique id based on number of existing paragraphs.
+		$numPara = 0;
+		$cursor = $category->find(array('type' => 'paragraph'));
+		foreach ($cursor as $paragraph) {
+			$numPara += 1;
+		}
+		$paragraph['_id'] = $numPara+1 + "";
+
+		$result = $result = $category->save($paragraph);
+		var_dump($result);
+
+		return $result;
 	}
 
 	/**

@@ -6,31 +6,16 @@
 	<title>Typeractive</title>
 	<script src="scraper.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-</head>
+</head>	
 
-<?php
+<?php 
 
 include 'db.php';
 include 'config.php';
 
 $db = new DB($config);
 
-// CREATING
-/*
-$paragraph = array(
-	'type' => 'paragraph',
-	'text' => 'PARAGRAPH_TEXT'
-);
-$db->createParagraph('COLLECTION_NAME', $paragraph);*/
-
-// READING
-/*
-$p = $db->readParagraphs('COLLECTION_NAME');
-foreach($p as $line) {
-	echo $line['text'];
-}*/
-
-?>	
+?>
 
 <body>
 
@@ -40,6 +25,7 @@ foreach($p as $line) {
 	</form>
 	<button value="Go" onclick="Scraper.parsePage()"><p>Enter</p></button>
 	<p id="output"></p>
+	<p id="msg"></p>
 </article>
 
 </body>
