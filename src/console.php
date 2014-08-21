@@ -8,15 +8,6 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>	
 
-<?php 
-
-include 'db.php';
-include 'config.php';
-
-$db = new DB($config);
-
-?>
-
 <body>
 
 <article>
@@ -24,6 +15,7 @@ $db = new DB($config);
 		Page: <input type="text" id="urlForm"></input>
 	</form>
 	<button value="Go" onclick="Scraper.parsePage()"><p>Enter</p></button>
+	<button value="Q" onclick="Scraper.readDB()"><p>Query</p></button>
 	<p id="output"></p>
 	<p id="msg"></p>
 </article>

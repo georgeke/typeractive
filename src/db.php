@@ -27,18 +27,23 @@ class DB {
 			$category = $this->db->createCollection($collection);
 		}
 
-		// Add unique id based on number of existing paragraphs.
-		$numPara = 0;
-		$cursor = $category->find(array('type' => 'paragraph'));
-		foreach ($cursor as $paragraph) {
-			$numPara += 1;
-		}
-		$paragraph['_id'] = $numPara+1 + "";
-
-		$result = $result = $category->save($paragraph);
-		var_dump($result);
+		$result = $category->save($paragraph);
 
 		return $result;
+	}
+
+	/**
+	 * Creates a new category, dropping an existing one of the same name.
+	 * @param string $collection
+	 */
+	public function createCategory($collection) {
+		try {
+			$category = $this->db->selectCollection($collection);
+			$response = $category->drop();
+			$category = $this->db->createCollection($collection);
+		} catch (Exception $e) {
+			$category = $this->db->createCollection($collection);
+		}
 	}
 
 	/**
