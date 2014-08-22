@@ -27,6 +27,21 @@ if (isset($_GET['collection'])) {
 	while($i >= 0):
 		if (isset($_POST["p$i"])) {
 			$text = $_POST["p$i"];
+
+			// Filter text for non-print chars (for this purpose, anything not \x32 to \x7E)
+			// > ((\()|(\{)|(\[))				 : Matches either a (, {, or [
+			// > (?(2)[^\(]|(?(3)[^\{]|[^\[]))*	 : Matches * of any character other than ), }, or ], based on the above group.
+			// > [^ -~]{1,}?					 : Matches /at least/ one non-print character, up to ∞
+			// > (?(2)[^\(]|(?(3)[^\{]|[^\]]))*	 : Same as second clause above.
+			// > (?(2)(\))|(?(3)(\})|(\])))		 : Matches a corresponding closing bracket based on groups 2-4 (in group 1)
+			// > [^. ]{0,}						 : Matches anything but a space or period, such as commas.
+			// >  *								 : Matches all trailing white space.
+			$re = '/((\()|(\{)|(\[))(?(2)[^\(]|(?(3)[^\{]|[^\[]))*[^ -~]{1,}?(?(2)[^\(]|(?(3)[^\{]|[^\]]))*(?(2)(\))|(?(3)(\})|(\])))[^. ]{0,} */';
+			$text = preg_replace($re, "", $str);
+			// Matching all non-print characters not surrounded in brackets.
+			$re = '/[^ -~] */'
+			$text = preg_replace($re, "", $str);
+
 			$paragraph = array(
 				'_id' => ''+$i,
 				'type' => 'paragraph',

@@ -35,6 +35,9 @@ Scraper = {
 						innerText = textObj[i]['innerText'];
 					}
 					if (textObj[i]['tagName'] === "P" && innerText.indexOf(".") > -1) {
+						// Filtering paragraph for non-print (not \x32 to \x7E) chars.
+						var re = /((\()|(\{)|(\[))(?(2)[^\(]|(?(3)[^\{]|[^\[]))*[^ -~]{1,}?(?(2)[^\(]|(?(3)[^\{]|[^\]]))*(?(2)(\))|(?(3)(\})|(\])))[^. ]{0,} */g;
+
 						all += innerText;
 						paras.push(innerText);
 					}
@@ -58,19 +61,4 @@ Scraper = {
 			});
 		});
 	},
-
-	readDB: function() {
-		var articleName = $('#urlForm').val();
-		var payload = {
-			collection: articleName
-		};
-
-		$.getJSON("res/dbFunc.php", payload, function(data) {
-			var text = "";
-			for (key in data) {
-				text += data[key] + "<br /><br />";
-			}
-			$('#output').html(text);
-		});
-	}
 };
