@@ -6,13 +6,49 @@
 	<title>Typeract!ve</title>
 	<script src="js/DBReader.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
 
 <article>
-	<button value="Q" onclick=""><p>Test</p></button>
-	<p id="output"></p>
+	<div class="topBar">
+		<!--<div class="statWPM"></div>
+		<div class="statTime"></div>
+		<div class="statAcc"></div>-->
+		<div class="arrow" onmousedown="return false"></div>
+		<div class="statBlock" onmousedown="return false">
+			<img src="img/ic_wpm.png" class="icon" draggable="false">
+			<div class="stat" readonly="readonly">0 WPM</div>
+		</div>
+		<div class="statBlock" onmousedown="return false">
+			<img src="img/ic_time.png" class="icon" draggable="false">
+			<div class="stat" readonly="readonly">0:00</div>
+		</div>
+		<div class="statBlock" onmousedown="return false">
+			<img src="img/ic_acc.png" class="icon" draggable="false">
+			<div class="stat" readonly="readonly">0%</div>
+		</div>
+	</div>
+	<div class="middleBar">
+		<textarea class="content" readonly="readonly">
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dolor et quam consectetur accumsan. Curabitur sed turpis nunc. Proin non hendrerit purus, at molestie dui. Pellentesque non odio sem. Etiam ex ante, porttitor eget hendrerit eget, aliquet id ligula. Aenean pulvinar interdum gravida. Vivamus fermentum erat sed nunc hendrerit, eget sodales eros auctor. Nulla consectetur blandit consectetur. Integer ac tristique purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet dui non dui interdum fringilla.
+
+	In odio magna, cursus hendrerit sodales in, lacinia quis lorem. Vestibulum fringilla ex vel massa euismod convallis interdum at purus. Cras hendrerit blandit elementum. Quisque orci tellus, egestas eu semper id, imperdiet a purus. Vestibulum a hendrerit massa. Duis enim augue, fringilla vel luctus sed, lobortis ut justo. Sed tristique, est eget pharetra auctor, ex ex dignissim lectus, non lobortis risus odio in metus. Sed cursus eget purus eu dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris et mauris at velit posuere aliquet eu et velit. Pellentesque accumsan, neque vel pretium consectetur, ligula felis convallis libero, in tincidunt odio purus vel ex. Nullam elementum diam nunc, quis molestie massa facilisis ac. Integer molestie nibh quis est euismod, vitae lobortis nisl tincidunt.
+
+	Nam faucibus risus orci, ut egestas augue faucibus id. Pellentesque congue sapien eu risus malesuada suscipit. Vivamus euismod ante eget arcu varius, sed eleifend lorem laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam ut eleifend leo. Donec purus elit, blandit id efficitur a, imperdiet fringilla nibh. Quisque sollicitudin dolor nec fermentum ultrices. Duis a aliquet lorem. Sed commodo dictum mauris. Sed et metus auctor, sagittis nulla vitae, dapibus libero. Duis scelerisque tincidunt consequat.
+
+	Nulla luctus mauris et nisl hendrerit volutpat. Aenean quam nunc, placerat sit amet iaculis et, bibendum in eros. Maecenas quis sem ut ex aliquet hendrerit. Vestibulum ut pharetra tortor. In in sapien in ipsum iaculis pharetra vitae et mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pretium tellus diam, a sagittis velit viverra vel. Sed egestas ullamcorper nunc, ac auctor neque ornare vel.
+
+	Donec ut lobortis lorem. Nullam eget finibus enim, sit amet luctus tortor. In blandit sem tellus, ut ultricies enim pharetra a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium, arcu at dignissim dignissim, risus lacus laoreet ligula, nec tristique lorem odio molestie ligula. Proin euismod ac mauris non bibendum. Aenean orci sapien, sodales in tellus eget, vulputate cursus sem. Morbi a odio tellus. Suspendisse potenti.
+		</textarea>
+	</div>
+	<div class="bottomBar">
+		<textarea spellcheck='false' class="input">
+Donec ut lobortis lorem. Nullam eget finibus enim, sit amet luctus tortor. In blandit sem tellus, ut ultricies enim pharetra a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium, arcu at dignissim dignissim, risus lacus laoreet ligula, nec tristique lorem odio molestie ligula. Proin euismod ac mauris non bibendum. Aenean orci sapien, sodales in tellus eget, vulputate cursus sem. Morbi a odio tellus. Suspendisse potenti.
+		</textarea>
+		<div class="menu" readonly="readonly">☰</div>
+	</div>
 </article>
 
 </body>
