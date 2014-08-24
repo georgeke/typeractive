@@ -1,10 +1,57 @@
+* {
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	-webkit-user-drag: none;
+}
+
+header {
+	background-color: orange;
+	height: 100px;
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+article {
+	width: 790px;
+	margin: 0 auto;
+}
+
+textarea {
+	font-family: Gill Sans MT;
+	font-size: 21px;
+	line-height: 1.5em;
+	padding: 24px;
+	padding-top: 12px;
+	outline: none;	/*for Chrome select highlight*/
+	overflow: hidden;
+	display: block;
+	resize: none;
+	border-color: orange;
+	border-style: solid;
+	box-sizing: border-box; /*dimens accounts for padding/margin*/
+	background-color: white;
+}
+
+div.title {
+	padding-top: 15px;
+	font-size: 50px;
+	font-family: Tahoma;
+	font-weight: bold;
+	height: 1em;
+	text-align: center;
+}
+
 div.topBar {
 	background-color: orange;
 	width: 790px;
 	height: 90px;
 	padding: 5px;
 	border-bottom-width: 3px;
-	border-bottom-color: yellow;
+	border-bottom-color: Gold;
 	border-bottom-style: solid;
 	box-sizing: border-box;
 }
@@ -25,8 +72,17 @@ div.bottomBar {
 	width: 0;
 	height: 0;
 	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-top: 12px solid yellow;
+	border-right: 12px solid transparent;	
+}
+
+.downArrow {
+	border-top: 12px solid Gold;
+	border-bottom: 0px solid transparent;
+}
+
+.upArrow {
+	border-bottom: 12px solid Gold;
+	border-top: 0px solid transparent;
 }
 
 .statBlock {
@@ -69,34 +125,14 @@ div.bottomBar {
 	width: 100%;
 }
 
-*[readonly="readonly"] {
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-}
-
-textarea {
-	font-family: Gill Sans MT;
-	font-size: 21px;
-	line-height: 1.5em;
-	padding: 24px;
-	padding-top: 12px;
-	outline: none;	/*for Chrome select highlight*/
-	overflow: hidden;
-	display: block;
-	resize: none;
-	border-color: orange;
-	border-style: solid;
-	box-sizing: border-box; /*dimens accounts for padding/margin*/
-	background-color: white;
-}
-
 .menu {
+	margin: 0 auto;
 	font-size: 34px;
-	color: yellow;
-	text-align: center;
+	color: Gold;
+	width: 1em;
 	padding-top: 6px;
+}
+
+.choice {
+
 }
