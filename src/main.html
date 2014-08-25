@@ -16,19 +16,40 @@
 	<div class="title">Typeractive</div>
 </header>
 
+<div class="menu" id="menu">
+	<div class="welcome">Welcome</div>
+	<div class="choices">
+		<div class="choiceBlock" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)" onclick="playRandom()">
+			<img src="img/ic_menu_random.png" class="choiceIcon">
+			<div class="choice">Random</div>
+		</div>
+		<div class="choiceBlock" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)" onclick="$('#menu').hide()">
+			<img src="img/ic_menu_resume.png" class="choiceIcon">
+			<div class="choice">Resume</div>
+		</div>
+		<div class="choiceBlock" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)" onclick="$('#categories').show()">
+			<img src="img/ic_menu_categories.png" class="choiceIcon">
+			<div class="choice">Random</div>
+		</div>
+	</div>
+</div>
+
+<div class="categories" id="categories">
+</div>
+
 <article>
 	<div class="topBar">
 		<div class="arrow downArrow" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)" onclick="toggleArrow(this)"></div>
 		<div class="statBlock">
-			<img src="img/ic_wpm.png" class="icon">
+			<img src="img/ic_wpm.png" class="statIcon">
 			<div class="stat">0 WPM</div>
 		</div>
 		<div class="statBlock">
-			<img src="img/ic_time.png" class="icon">
+			<img src="img/ic_time.png" class="statIcon">
 			<div class="stat">0:00</div>
 		</div>
 		<div class="statBlock">
-			<img src="img/ic_acc.png" class="icon">
+			<img src="img/ic_acc.png" class="statIcon">
 			<div class="stat">0%</div>
 		</div>
 	</div>
@@ -49,7 +70,7 @@ Donec ut lobortis lorem. Nullam eget finibus enim, sit amet luctus tortor. In bl
 		<textarea spellcheck='false' class="input">
 Donec ut lobortis lorem. Nullam eget finibus enim, sit amet luctus tortor. In blandit sem tellus, ut ultricies enim pharetra a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium, arcu at dignissim dignissim, risus lacus laoreet ligula, nec tristique lorem odio molestie ligula. Proin euismod ac mauris non bibendum. Aenean orci sapien, sodales in tellus eget, vulputate cursus sem. Morbi a odio tellus. Suspendisse potenti.
 		</textarea>
-		<div class="menu" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)">☰</div>
+		<div class="menuIcon" onmouseover="onElementOver(this)" onmouseout="onElementOut(this)" onclick="$('#menu').show()">☰</div>
 	</div>
 </article>
 

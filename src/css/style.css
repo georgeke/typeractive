@@ -1,3 +1,6 @@
+/**
+ * General
+ */
 * {
 	-webkit-user-select: none;
 	-webkit-touch-callout: none;
@@ -6,6 +9,7 @@
 	-ms-user-select: none;
 	-o-user-select: none;
 	-webkit-user-drag: none;
+	cursor: default;
 }
 
 header {
@@ -36,6 +40,9 @@ textarea {
 	background-color: white;
 }
 
+/**
+ * Main screen general layout
+ */
 div.title {
 	padding-top: 15px;
 	font-size: 50px;
@@ -67,12 +74,17 @@ div.bottomBar {
 	height: 152px;
 }
 
+/**
+ * Main app
+ */
 .arrow {
 	margin: 0 auto;
 	width: 0;
 	height: 0;
 	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;	
+	border-right: 12px solid transparent;
+	cursor: pointer;
+	cursor: hand;	
 }
 
 .downArrow {
@@ -97,7 +109,7 @@ div.bottomBar {
 	float: left;
 }
 
-.icon {
+.statIcon {
 	width: 40px;
 	height: 40px;
 	float: left;
@@ -123,16 +135,85 @@ div.bottomBar {
 	border-right-width: 25px;
 	border-left-width: 25px;
 	width: 100%;
+	cursor: auto;
 }
 
-.menu {
+.menuIcon {
 	margin: 0 auto;
 	font-size: 34px;
 	color: Gold;
 	width: 1em;
 	padding-top: 6px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/**
+ * Menu screen
+ */
+.menu {
+	display: none;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;	
+	position: absolute;
+	background-color: orange;
+	width: 790px;
+	height: 592px;
+	z-index: 10;
+}
+
+.welcome {
+	font-size: 45px;
+	font-family: Goudy Old Stout;
+	padding: 40px;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.choices {
+	padding-top: 100px;
+	height: 120px;
+	width: 300px;
+	margin: 0 auto;
+}
+
+.choiceBlock {
+	float: left;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.choiceIcon {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .choice {
+	margin: 0 auto;
+	font-size: 20px;
+	font-family: Tahoma;
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
 
+/**
+ * Categories screen
+ */
+.categories {
+	display: none;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;	
+	position: absolute;
+	background-color: orange;
+	width: 790px;
+	height: 592px;
+	z-index: 11;
 }

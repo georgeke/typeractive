@@ -5,9 +5,9 @@ function toggleArrow(el) {
 
 function onElementOver(el) {
 	debugger;
-	if ($(el).hasClass("choice")) {
+	if ($(el).hasClass("choiceBlock")) {
 		$(el).css('background-color', 'Gold');
-	} else if ($(el).hasClass("menu")) {
+	} else if ($(el).hasClass("menuIcon")) {
 		$(el).css('color', 'yellow');
 	}/* else if ($(el).hasClass("downArrow")) {
 		$(el).css('border-top', '12px solid yellow');
@@ -17,13 +17,17 @@ function onElementOver(el) {
 }
 
 function onElementOut(el) {
-	if ($(el).hasClass("choice")) {
+	if ($(el).hasClass("choiceBlock")) {
 		$(el).css('background-color', 'orange');
-	} else if ($(el).hasClass("menu")) {
+	} else if ($(el).hasClass("menuIcon")) {
 		$(el).css('color', 'Gold');
 	}/* else if ($(el).hasClass("downArrow")) {
 		$(el).css('border-top', '12px solid Gold');
 	} else if ($(el).hasClass("upArrow")) {
 		$(el).css('border-bottom', '12px solid Gold');
 	}*/
+}
+
+function playRandom() {
+	alert('tba');
 }
