@@ -22,6 +22,7 @@ header {
 article {
 	width: 790px;
 	margin: 0 auto;
+	display: none;
 }
 
 textarea {
@@ -43,36 +44,44 @@ textarea {
 /**
  * Main screen general layout
  */
-div.title {
+div.header {
 	padding-top: 15px;
 	font-size: 50px;
-	font-family: Tahoma;
+	font-family: "Helvetica Neue", Helvetica, Sans-serif;
 	font-weight: bold;
 	height: 1em;
 	text-align: center;
 }
 
 div.topBar {
+	position:relative;
 	background-color: orange;
 	width: 790px;
 	height: 90px;
 	padding: 5px;
-	border-bottom-width: 3px;
-	border-bottom-color: Gold;
-	border-bottom-style: solid;
+	padding-top: 10px;
 	box-sizing: border-box;
+	z-index: 0;
 }
 
 div.middleBar {
+	position:relative;
+	border-top: 3px solid Gold;
 	width: 790px;
 	height: 350px;
 }
 
 div.bottomBar {
+	position:relative;
 	background-color: orange;
 	width: 790px;
 	height: 152px;
 }
+/*
+.border {
+	border-top: 3px solid Gold;
+	border-right: 3px solid Gold;
+}*/
 
 /**
  * Main app
@@ -92,9 +101,17 @@ div.bottomBar {
 	border-bottom: 0px solid transparent;
 }
 
+.downArrow:hover {
+	border-top: 12px solid Yellow;
+}
+
 .upArrow {
 	border-bottom: 12px solid Gold;
 	border-top: 0px solid transparent;
+}
+
+.upArrow:hover {
+	border-bottom: 12px solid Yellow;
 }
 
 .statBlock {
@@ -148,6 +165,10 @@ div.bottomBar {
 	cursor: hand;
 }
 
+.menuIcon:hover {
+	color: yellow;
+}
+
 /**
  * Menu screen
  */
@@ -155,35 +176,45 @@ div.bottomBar {
 	display: none;
 	left: 0;
 	right: 0;
+	padding-top: 30px;
 	margin-left: auto;
 	margin-right: auto;	
 	position: absolute;
 	background-color: orange;
+	box-sizing: border-box;
 	width: 790px;
-	height: 592px;
+	height: 595px;
 	z-index: 10;
 }
 
-.welcome {
-	font-size: 45px;
+.title {
+	font-size: 35px;
 	font-family: Goudy Old Stout;
-	padding: 40px;
+	padding: 20px;
 	width: 100%;
 	box-sizing: border-box;
 	text-align: center;
 }
 
 .choices {
-	padding-top: 100px;
+	padding-top: 140px;
 	height: 120px;
-	width: 300px;
+	display: table;
 	margin: 0 auto;
 }
 
 .choiceBlock {
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 	float: left;
 	cursor: pointer;
 	cursor: hand;
+	display: inline-block;
+}
+
+.choiceBlock:hover {
+	background-color: Gold;
 }
 
 .choiceIcon {
@@ -196,7 +227,7 @@ div.bottomBar {
 .choice {
 	margin: 0 auto;
 	font-size: 20px;
-	font-family: Tahoma;
+	font-family: "Helvetica Neue", Helvetica, Sans-serif;
 	text-align: center;
 	cursor: pointer;
 	cursor: hand;
@@ -214,6 +245,101 @@ div.bottomBar {
 	position: absolute;
 	background-color: orange;
 	width: 790px;
-	height: 592px;
+	height: 595px;
 	z-index: 11;
+}
+
+.catTitle {
+	height: 85px;
+	width: 80%;
+	padding: 20px;
+	padding-left: 45px;
+	float: left;
+	text-align: left;
+	background-color: orange;
+}
+
+.backMenu {
+	float: right;
+	padding-right: 45px;
+	text-align: right;
+	width: 20%;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.search {
+	height: 475px;
+	margin: 0 auto;
+	width: 720px;
+	background-color: white;
+}
+
+.searchBar {
+	width: 700px;
+	height: 45px;
+	margin: 0 auto;
+	margin-top: 90px;
+}
+
+.searchInput {
+	float:left;
+	width: 638px;
+	height: 43px;
+	border: none;
+	font-size: 30px;
+	resize: none;
+	outline: none; 
+}
+
+.searchIcon {
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin-right: 12px;
+}
+
+.catList {
+	margin: 0 auto;
+	width: 700px;
+	height: 420px;
+	background-color: orange;
+	overflow-y: auto;
+}
+
+.cat {
+	width: 670px;
+	height: 40px;
+	padding: 10px;
+	padding-right: 20px;
+}
+
+.cat:hover {
+	background-color: Gold;
+}
+
+.catName {
+	line-height: 40px;
+	font-size: 30px;
+	font-family: "Helvetica Neue", Helvetica, Sans-serif;
+	color: white;
+	float: left;
+}
+
+.play {
+	display: none;
+	float: right;
+	padding-right: 30px;
+}
+
+.playArrow {
+	display: none;
+	float: right;
+	width: 0;
+	height: 0;
+	border-top: 18px solid transparent;
+	border-bottom: 18px solid transparent;
+	border-left: 21px solid white;
+	cursor: pointer;
+	cursor: hand;
 }

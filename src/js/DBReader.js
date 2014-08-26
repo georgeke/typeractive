@@ -16,4 +16,8 @@ Reader  = {
 			$('#output').html(text);
 		});
 	}
+
+	getCats: function() {
+
+	}
 }
