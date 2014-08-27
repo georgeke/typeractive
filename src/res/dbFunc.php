@@ -45,7 +45,7 @@ if (isset($_GET['collection'])) {
 			$text = preg_replace($re, "", $text);
 			// Matching all non-print characters not surrounded in brackets.
 			$re = '/[^ -~] */';
-			$text = preg_replace($re, "", $text);
+			$text = preg_replace($re, "", $text);		
 
 			$paragraph = array(
 				'_id' => ''+$i,

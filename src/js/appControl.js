@@ -25,7 +25,6 @@ function setup() {
 
 	// Prevent image ghost drag.
 	var imgs = $('img');
-	debugger;
 	for (var i = 0; i < imgs.length; i++) {
 		imgs[i].onmousedown =  function(e) {
 			if (e.preventDefault) {
@@ -59,7 +58,7 @@ function updateTimer() {
 
 	this.seconds++;
 	s++;
-	if (s>60) {
+	if (s>=60) {
 		s-=60;
 		m++;
 	}
@@ -86,7 +85,21 @@ function updateTest(input) {
 
 			// Ending the game.
 			if (i===test.length-1) {
-				alert('You Win! Screen coming soon.');
+				// Or else you cen keep typing...
+				$('#input').blur();
+
+				clearTimeout(timer);
+
+				var wpm = ($('#wpm').html()).split(" ")[0];
+				var acc = $('#acc').html();
+				var time = $('#time').html();
+
+				$('#endWPM').html(wpm);
+				$('#endAcc').html(acc);
+				$('#endTime').html(time);
+
+				$('#end').show();
+				$('#main').hide();
 			}
 
 			// Set cursor to next letter and clear everything after.
@@ -111,7 +124,7 @@ function updateTest(input) {
 	}
 
 	// A word is counted as 5 characters typed correctly.
-	var wpm = Math.ceil(((input.length/5) / (seconds/60)));
+	var wpm = Math.ceil(((input.length/5) / (this.seconds/60)));
 	if (!isFinite(wpm)) {
 		wpm = 0;
 	}
@@ -128,6 +141,7 @@ function updateTest(input) {
 // Menu
 function playRandom(cats) {
 	cat = cats[Math.floor(Math.random() * cats.length)];
+	// readDB initializes the test and resets the game ASYNC
 	Reader.readDB(cat);
 
 	$('#main').show();
@@ -196,6 +210,7 @@ function showCategories(cats) {
 	}
 
 	$('#catList').html(newHTML);
+	$('#loading').hide();
 }
 
 function filterCats(val) {
@@ -240,9 +255,11 @@ function startGame(paras) {
 
 	var sentences = [];
 	for (var i = 0 ; i < paras.length ; i++) {
-		// [^\s.!?]{2,}?: Ignores things like A.
+		// [^\s.!?]{2,}?: Ignores things like A. or G.
 		var re = /([^\s.!?]{2,}?[.!?])\s/gi;
 
+		// Some paragraphs have trailing whitespace.
+		paras[i] = paras[i].trim();
 		var result = paras[i].split(re);
 
 		// The split has the capturing group result after each split in the array, so we need to append them.
@@ -252,6 +269,7 @@ function startGame(paras) {
 				sentence += result[j+1];
 			}
 			
+			sentence = sentence.trim();
 			sentences.push(sentence);
 		}
 	}

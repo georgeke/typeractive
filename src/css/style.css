@@ -1,7 +1,7 @@
 /**
  * General
  */
-* {
+html, textarea, img, div, * {
 	-webkit-user-select: none;
 	-webkit-touch-callout: none;
 	-khtml-user-select: none;
@@ -159,6 +159,7 @@ div.bottomBar {
 .input {
 	font-size: 25px;
 	background-color: white;
+	margin-top: 0;
 	border-right-width: 25px;
 	border-left-width: 25px;
 	width: 100%;
@@ -166,8 +167,10 @@ div.bottomBar {
 }
 
 .menuIcon {
+	padding-top: 0px;
 	margin: 0 auto;
 	font-size: 34px;
+	font-family: Serif;
 	color: Gold;
 	width: 1em;
 	cursor: pointer;
@@ -197,7 +200,7 @@ div.bottomBar {
 }
 
 .title {
-	font-size: 35px;
+	font-size: 45px;
 	font-family: Goudy Old Stout;
 	padding: 20px;
 	width: 100%;
@@ -266,6 +269,7 @@ div.bottomBar {
 }
 
 .catTitle {
+	font-size: 35px;
 	height: 85px;
 	width: 80%;
 	padding: 20px;
@@ -358,4 +362,65 @@ div.bottomBar {
 	border-left: 21px solid white;
 	cursor: pointer;
 	cursor: hand;
+}
+
+/**
+ * Loading screen
+ */
+ .loading {
+ 	opacity: 0.3;
+ 	background-color: gray;
+ 	z-index: 20;
+ }
+
+ /**
+ * End screen
+ */
+
+.endPanel {
+	padding-top: 100px;
+	display: table;
+	height: 150px;
+	margin: 0 auto;
+}
+
+.endBlock {
+	padding-left: 20px;
+	padding-right: 20px;
+	width: 125px;
+	height: 150px;
+	display: inline-block;
+	float: left;
+}
+
+.endBlockBig {
+	height: 150px;
+	width: 300px;
+}
+
+.endStat {
+	width: 100%;
+	font-size: 40px;
+	color: white;
+	text-align: center;
+}
+
+.endStatBig {
+	width: 300px;
+	font-size: 81px;
+}
+
+.endDesc {
+	color: black;
+	font-size: 25px;
+	text-align: center;
+	width: 100%;
+}
+
+.endDescBig {
+	font-size: 35px;
+}
+
+.endChoices {
+	padding-top: 50px;
 }

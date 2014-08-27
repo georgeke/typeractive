@@ -26,6 +26,7 @@ Reader = {
 	},
 
 	loadCats: function() {
+		$('#loading').show();
 		$.getJSON("res/dbFunc.php", "all=1", function(data) {
 			showCategories(data);
 		});

@@ -16,6 +16,12 @@
 	<div class="header">Typeractive</div>
 </header>
 
+<div class="menu loading border" id="loading">
+	<div class="title">Loading</div>
+	<div class="choices"></div>
+</div>
+
+
 <div class="menu border" id="menu">
 	<div class="title">Welcome</div>
 	<div class="choices">
@@ -32,7 +38,21 @@
 
 <div class="menu border" id="end">
 	<div class="title">Done!</div>
-	<div class="choices">
+	<div class="endPanel">
+		<div class="endBlock">
+			<div class="endStat" id="endTime"></div>
+			<div class="endDesc">Time Taken</div>
+		</div>
+		<div class="endBlock endBlockBig">
+			<div class="endStat endStatBig" id="endWPM"></div>
+			<div class="endDesc endDescBig">Words Per Minute</div>
+		</div>		
+		<div class="endBlock">
+			<div class="endStat" id="endAcc"></div>
+			<div class="endDesc">Accuracy</div>
+		</div>	
+	</div>
+	<div class="choices endChoices">
 		<div class="choiceBlock" onclick="retry()">
 			<img src="img/ic_restart.png" class="choiceIcon">
 			<div class="choice">Retry</div>
