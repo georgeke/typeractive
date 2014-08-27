@@ -18,7 +18,7 @@
 
 <div class="menu border" id="menu">
 	<div class="title">Welcome</div>
-	<div class="choices" id="choices">
+	<div class="choices">
 		<div class="choiceBlock" onclick="Reader.getCats()">
 			<img src="img/ic_menu_random.png" class="choiceIcon">
 			<div class="choice">Random</div>
@@ -26,6 +26,20 @@
 		<div class="choiceBlock" onclick="goToCat()">
 			<img src="img/ic_menu_categories.png" class="choiceIcon">
 			<div class="choice">Categories</div>
+		</div>
+	</div>
+</div>
+
+<div class="menu border" id="end">
+	<div class="title">Done!</div>
+	<div class="choices">
+		<div class="choiceBlock" onclick="retry()">
+			<img src="img/ic_restart.png" class="choiceIcon">
+			<div class="choice">Retry</div>
+		</div>
+		<div class="choiceBlock" onclick="endToMenu()">
+			<img src="img/ic_menu.png" class="choiceIcon">
+			<div class="choice">Menu</div>
 		</div>
 	</div>
 </div>
@@ -38,7 +52,7 @@
 			<div class="choice">Restart</div>
 		</div>
 		<div class="choiceBlock" id="resume" onclick="resume()">
-			<img src="img/ic_menu_resume.png" class="choiceIcon">
+			<img src="img/ic_resume.png" class="choiceIcon">
 			<div class="choice">Resume</div>
 		</div>
 		<div class="choiceBlock" onclick="pauseToMenu()">
@@ -79,14 +93,14 @@
 		</div>
 		<div class="statBlock">
 			<img src="img/ic_acc.png" class="statIcon">
-			<div class="stat" id="acc">0%</div>
+			<div class="stat" id="acc">100%</div>
 		</div>
 	</div>
 	<div class="middleBar">
-		<textarea class="content" id="content" readonly="readonly"></textarea>
+		<div class="content" id="content"></div>
 	</div>
 	<div class="bottomBar">
-		<textarea spellcheck='false' class="input" id="input"></textarea>
+		<textarea spellcheck='false' class="input" id="input" oninput="updateTest(this.value)"></textarea>
 		<div class="menuIcon" onclick="pauseMenu()">☰</div>
 	</div>
 </article>

@@ -144,8 +144,14 @@ div.bottomBar {
 
 .content {
 	font-size: 25px;
+	font-family: Gill Sans MT;
+	line-height: 1.5em;
 	background-color: white;
-	border-width: 25px;
+	border: 25px solid orange;
+	padding: 25px;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	box-sizing: border-box;
 	height: 100%;
 	width: 100%;	
 }
@@ -164,7 +170,6 @@ div.bottomBar {
 	font-size: 34px;
 	color: Gold;
 	width: 1em;
-	padding-top: 6px;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -222,6 +227,13 @@ div.bottomBar {
 }
 
 .choiceIcon {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.choiceIcon:hover {
 	width: 100px;
 	height: 100px;
 	cursor: pointer;

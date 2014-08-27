@@ -1,15 +1,38 @@
+var MAX_CHARS = 400;
+
 var timer;
 var catLoaded = false;
-var MAX_CHARS = 400;
 var cat;
+var test;
+var mistakes = 0;
+var charsTyped = 0;
+var seconds = 0;
 
 // General
 function resetGame() {
-
+	mistakes = 0;
+	charsTyped = 0;
+	seconds = 0;
+	$("#content").html("");
+	$("#input").val("");
+	$("#wpm").html("0 WPM");
+	$("#time").html("0:00");
+	$("#acc").html("100%");
 }
 
 function setup() {
 	$('#menu').show(); 
+
+	// Prevent image ghost drag.
+	var imgs = $('img');
+	debugger;
+	for (var i = 0; i < imgs.length; i++) {
+		imgs[i].onmousedown =  function(e) {
+			if (e.preventDefault) {
+				e.preventDefault();
+			}
+		};
+	}
 }
 
 // Main
@@ -34,6 +57,7 @@ function updateTimer() {
 	var m = time.split(":")[0];
 	var s = time.split(":")[1];
 
+	this.seconds++;
 	s++;
 	if (s>60) {
 		s-=60;
@@ -52,6 +76,53 @@ function startTimer() {
 
 function pauseTimer() {
 	clearTimeout(timer);
+}
+
+	// During the test
+function updateTest(input) {
+	for (var i = 0 ; i < input.length ; i++) {
+		if (input.charAt(i) === test.charAt(i)) {
+			$('#letter'+i).css('background-color', 'orange');
+
+			// Ending the game.
+			if (i===test.length-1) {
+				alert('You Win! Screen coming soon.');
+			}
+
+			// Set cursor to next letter and clear everything after.
+			if (i===input.length-1) {
+				this.charsTyped++;
+				if (test.charAt(i+1)) {
+					$('#letter'+(i+1)).css('background-color', 'gray');
+				}
+				for (var j = i+2 ; j < test.length ; j++) {
+					$('#letter'+j).css('background-color', 'white');
+				}
+			}
+		} else {
+			$('#letter'+i).css('background-color', 'red');
+			this.mistakes++;
+			// Reset letters after that are coloured.
+			for (var j = i+1 ; j < test.length ; j++) {
+				$('#letter'+j).css('background-color', 'white');
+			}
+			break;
+		}
+	}
+
+	// A word is counted as 5 characters typed correctly.
+	var wpm = Math.ceil(((input.length/5) / (seconds/60)));
+	if (!isFinite(wpm)) {
+		wpm = 0;
+	}
+	$('#wpm').html(wpm+" WPM");
+
+	// Accuracy: Mistakes / Net chars typed
+	var acc = (100 - (this.mistakes/this.charsTyped)).toFixed(1);
+	if (!isFinite(acc) || acc === 100) {
+		acc = 100;
+	}
+	$('#acc').html(acc+"%");
 }
 
 // Menu
@@ -94,7 +165,7 @@ function resume() {
 }
 
 function restart() {
-	Reader.readDB(cat);
+	Reader.readDB(this.cat);
 
 	$('#main').show();
 	$('#pause').hide();
@@ -154,6 +225,7 @@ function filterCats(val) {
 
 function startCat(cat) {
 	Reader.readDB(cat);
+	this.cat = cat;
 
 	$('#main').show();
 	$('#categories').hide();
@@ -207,5 +279,33 @@ function startGame(paras) {
 	} while (test.length < 0.75*MAX_CHARS);
 
 	test = test.trim();
-	$('#content').html(test);
+	test = test.replace("/&nbsp;/g", " ");
+	test = test.replace("/\s/g", "");
+
+	this.test = test;
+
+	// Need to convert each letter of this test string into a seperate span for styling.
+	var newHTML = "";
+
+	for (var i = 0 ; i < test.length ; i++) {
+		newHTML+= "<span class='letter' id='letter"+i+"'>"+test.charAt(i)+"</span>";
+	}
+
+	$('#content').html(newHTML);
+}
+
+// End
+function endToMenu() {
+	$('#end').hide();
+	$('#main').hide();
+	$('#menu').show();
+}
+
+function retry() {
+	Reader.readDB(cat);
+
+	$('#main').show();
+	$('#end').hide();
+	$('#input').focus();
+	startTimer();
 }
