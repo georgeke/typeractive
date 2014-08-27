@@ -4,6 +4,6 @@
     define('Password', 'and_cats');
 
 	$config = array(
-		'dbname' => 'finalTest',
+		'dbname' => 'typeDB',
     );
 ?>

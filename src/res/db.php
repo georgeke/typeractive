@@ -101,4 +101,8 @@ class DB {
 		$result = $category->remove(array('_id' => $id));
 		return $result;
 	}
+
+	public function checkError() {
+		return $this->db->lastError();
+	}
 }

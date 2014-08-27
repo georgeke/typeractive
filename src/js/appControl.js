@@ -197,12 +197,12 @@ function showCategories(cats) {
 	cats.sort();
 
 	for (var i = 0 ; i < cats.length ; i++) {
-		var cat = cats[i].replace("_", " ");
+		var cat = cats[i];
 
 		// Simpler to do this than to parse DOM elements.
 		var item = "";
 		item += '<div class="cat" id="cat'+i+'" onmouseenter="$(\'#playArrow'+i+'\').show();" onmouseleave="$(\'#playArrow'+i+'\').hide();">';
-		item += '<div class="catName">'+cat+'</div>';
+		item += '<div class="catName">'+cat.replace("_", " ")+'</div>';
 		item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();" onclick="startCat(\''+cat+'\')"></div>';
 		item += '<div class="catName play" id="play'+i+'">Play</div>';
 		item += '</div>';
@@ -255,8 +255,9 @@ function startGame(paras) {
 
 	var sentences = [];
 	for (var i = 0 ; i < paras.length ; i++) {
-		// [^\s.!?]{2,}?: Ignores things like A. or G.
-		var re = /([^\s.!?]{2,}?[.!?])\s/gi;
+		// [^A-Z\s.!?][^\s.!?]: 	Ignores things like A. or G.
+		// ["'\)]?: 				Match chars such as " after the period.
+		var re = /([^A-Z\s.!?][^\s.!?][.!?]["'\)]*?)\s/gi;
 
 		// Some paragraphs have trailing whitespace.
 		paras[i] = paras[i].trim();
