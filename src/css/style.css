@@ -143,12 +143,16 @@ div.bottomBar {
 }
 
 .content {
+	font-size: 25px;
+	background-color: white;
 	border-width: 25px;
 	height: 100%;
 	width: 100%;	
 }
 
 .input {
+	font-size: 25px;
+	background-color: white;
 	border-right-width: 25px;
 	border-left-width: 25px;
 	width: 100%;

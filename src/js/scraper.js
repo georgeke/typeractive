@@ -12,9 +12,9 @@ Scraper = {
 
 		// Get array of all paragraphs, placed in paras
 		$.getJSON(this.base, payload, function(data) {
+			debugger;
 			var pages = data['query']['pages'];
 			var text = {};
-			debugger;
 
 			for(var key in pages) {
 				if(pages.hasOwnProperty(key)) {
@@ -35,9 +35,6 @@ Scraper = {
 						innerText = textObj[i]['innerText'];
 					}
 					if (textObj[i]['tagName'] === "P" && innerText.indexOf(".") > -1) {
-						// Filtering paragraph for non-print (not \x32 to \x7E) chars.
-						var re = /((\()|(\{)|(\[))(?(2)[^\(]|(?(3)[^\{]|[^\[]))*[^ -~]{1,}?(?(2)[^\(]|(?(3)[^\{]|[^\]]))*(?(2)(\))|(?(3)(\})|(\])))[^. ]{0,} */g;
-
 						all += innerText;
 						paras.push(innerText);
 					}
@@ -60,5 +57,5 @@ Scraper = {
 				}
 			});
 		});
-	},
+	}
 };

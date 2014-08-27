@@ -3,7 +3,6 @@
 include 'db.php';
 include 'config.php';
 
-// Uncomment if testing requests not through console.php
 $db = new DB($config);
 
 if (isset($_GET['collection'])) {
@@ -18,6 +17,12 @@ if (isset($_GET['collection'])) {
 	}
 
 	echo json_encode($response);
+} elseif (isset($_GET['all'])) {
+	if ($_GET['all'] == '1') {
+		$cats = $db->getCategories(false);
+
+		echo json_encode($cats);
+	}
 } elseif (isset($_POST['collection']) and isset($_POST['p0'])) {
 	$collection = $_POST['collection'];
 	$db->createCategory($collection);
@@ -37,10 +42,10 @@ if (isset($_GET['collection'])) {
 			// > [^. ]{0,}						 : Matches anything but a space or period, such as commas.
 			// >  *								 : Matches all trailing white space.
 			$re = '/((\()|(\{)|(\[))(?(2)[^\(]|(?(3)[^\{]|[^\[]))*[^ -~]{1,}?(?(2)[^\(]|(?(3)[^\{]|[^\]]))*(?(2)(\))|(?(3)(\})|(\])))[^. ]{0,} */';
-			$text = preg_replace($re, "", $str);
+			$text = preg_replace($re, "", $text);
 			// Matching all non-print characters not surrounded in brackets.
-			$re = '/[^ -~] */'
-			$text = preg_replace($re, "", $str);
+			$re = '/[^ -~] */';
+			$text = preg_replace($re, "", $text);
 
 			$paragraph = array(
 				'_id' => ''+$i,

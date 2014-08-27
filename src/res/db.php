@@ -69,6 +69,16 @@ class DB {
 	}
 
 	/**
+	 * Get array of all collection names.
+	 * @return array
+	 */
+	public function getCategories(){
+		$cats = $this->db->getCollectionNames(false);
+
+		return $cats;
+	}
+
+	/**
 	 * Update a paragraph.
 	 * @return boolean
 	 */
