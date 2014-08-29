@@ -73,8 +73,9 @@ function updateTimer() {
 	if (s<10) {
 		s = "0"+s;
 	}
-	$("#time").html(m+":"+s)
-	timer = setTimeout(function(){updateTimer();}, 1000);
+	$("#time").html(m+":"+s);
+	debugger;
+	this.timer = setTimeout(function(){updateTimer();}, 1000);
 }
 
 function startTimer() {
@@ -82,12 +83,13 @@ function startTimer() {
 }
 
 function pauseTimer() {
-	clearTimeout(timer);
+	clearTimeout(this.timer);
 }
 
 	// During the test
 function updateTest(input) {
-	if (this.paused) {
+	// input !== "": When placeholder is set, IE triggers the oninput... nice.
+	if (this.paused && input !== "") {
 		this.paused = false;
 		this.startTimer();
 	}
@@ -99,7 +101,7 @@ function updateTest(input) {
 			$('#letter'+i).css('background-color', 'orange');
 
 			// Ending the game.
-			if (true) {
+			if (i===test.length-1) {
 				// Or else you cen keep typing...
 				$('#input').blur();
 
