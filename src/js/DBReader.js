@@ -1,5 +1,7 @@
 Reader = {
 	readDB: function(cat) {
+		$('#loading').show();
+
 		if (cat) {
 			var articleName = cat;
 		} else {
@@ -10,6 +12,7 @@ Reader = {
 			collection: articleName
 		};
 
+		$('#loading').show();
 		$.getJSON("res/dbFunc.php", payload, function(data) {
 			var text = "";
 			var paras = [];
@@ -22,6 +25,7 @@ Reader = {
 			} else {
 				$('#output').html(text);
 			}
+			$('#loading').hide();
 		});
 	},
 
@@ -29,12 +33,15 @@ Reader = {
 		$('#loading').show();
 		$.getJSON("res/dbFunc.php", "all=1", function(data) {
 			showCategories(data);
+			$('#loading').hide();
 		});
 	},
 
 	getCats: function() {
+		$('#loading').show();
 		$.getJSON("res/dbFunc.php", "all=1", function(data) {
 			playRandom(data);
+			$('#loading').hide();
 		});
 	}
 }

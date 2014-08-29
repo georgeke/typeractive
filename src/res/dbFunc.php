@@ -38,8 +38,8 @@ if (isset($_GET['collection'])) {
 			// Change all dashes to a hyphen.
 			$text = dashliterateString($text);
 
-			// Same as above but only for () brackets.
-			$re = '/(\()[^\(]*[^ -~]+?[^\)]*(\))/';
+			// Matching: (any string with at least 1 non-print char) an the whitespace before the brackets.
+			$re = '/(\s*?\()[^\(]*[^ -~]+?[^\)]*(\))/';
 			$text = preg_replace($re, "", $text);
 
 			// Matching all non-print characters.

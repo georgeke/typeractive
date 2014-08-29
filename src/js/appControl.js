@@ -1,5 +1,5 @@
 var MAX_CHARS = 400;
-
+var paused = true;
 var timer;
 var catLoaded = false;
 var cat;
@@ -10,18 +10,19 @@ var seconds = 0;
 
 // General
 function resetGame() {
-	mistakes = 0;
-	charsTyped = 0;
-	seconds = 0;
+	this.mistakes = 0;
+	this.charsTyped = 0;
+	this.seconds = 0;
+	this.paused = true;
 	$("#content").html("");
 	$("#input").val("");
-	$("#wpm").html("0 WPM");
+	$("#wpm").html("0");
 	$("#time").html("0:00");
 	$("#acc").html("100%");
 }
 
 function setup() {
-	$('#menu').show(); 
+	$('#menu').show();
 
 	// Prevent image ghost drag.
 	var imgs = $('img');
@@ -45,9 +46,16 @@ function toggleArrow(el) {
 		});
 	} else {
 		$('#topBar').css("position", "relative").animate({
-		    top:  58
+		    top:  64
 		});
 	}
+}
+
+function pauseMenu() {
+	pauseTimer();
+	$('#main').hide();
+	$('#pause').show();
+	$('#input').blur();
 }
 
 	// Timer
@@ -79,12 +87,19 @@ function pauseTimer() {
 
 	// During the test
 function updateTest(input) {
+	if (this.paused) {
+		this.paused = false;
+		this.startTimer();
+	}
+
+	var numCorrect = 0;
 	for (var i = 0 ; i < input.length ; i++) {
 		if (input.charAt(i) === test.charAt(i)) {
+			numCorrect = i;
 			$('#letter'+i).css('background-color', 'orange');
 
 			// Ending the game.
-			if (i===test.length-1) {
+			if (true) {
 				// Or else you cen keep typing...
 				$('#input').blur();
 
@@ -124,11 +139,11 @@ function updateTest(input) {
 	}
 
 	// A word is counted as 5 characters typed correctly.
-	var wpm = Math.ceil(((input.length/5) / (this.seconds/60)));
+	var wpm = Math.ceil(((numCorrect/5) / (this.seconds/60)));
 	if (!isFinite(wpm)) {
 		wpm = 0;
 	}
-	$('#wpm').html(wpm+" WPM");
+	$('#wpm').html(wpm);
 
 	// Accuracy: Mistakes / Net chars typed
 	var acc = (100 - (this.mistakes/this.charsTyped)).toFixed(1);
@@ -146,14 +161,6 @@ function playRandom(cats) {
 
 	$('#main').show();
 	$('#menu').hide();
-	$('#input').focus();
-	startTimer();
-}
-
-function pauseMenu() {
-	pauseTimer();
-	$('#main').hide();
-	$('#pause').show();
 }
 
 function goToCat() {
@@ -174,8 +181,6 @@ function pauseToMenu() {
 function resume() {
 	$('#pause').hide();
 	$('#main').show();
-	$('#input').focus();
-	startTimer();
 }
 
 function restart() {
@@ -183,8 +188,7 @@ function restart() {
 
 	$('#main').show();
 	$('#pause').hide();
-	$('#input').focus();
-	startTimer();	
+	$('#input').blur();
 }
 
 // Cat
@@ -210,7 +214,6 @@ function showCategories(cats) {
 	}
 
 	$('#catList').html(newHTML);
-	$('#loading').hide();
 }
 
 function filterCats(val) {
@@ -245,13 +248,11 @@ function startCat(cat) {
 	$('#main').show();
 	$('#categories').hide();
 	$('#menu').hide();
-	$('#input').focus();
-	startTimer();
 }
 
 // Game
 function startGame(paras) {
-	resetGame();
+	this.resetGame();
 
 	var sentences = [];
 	for (var i = 0 ; i < paras.length ; i++) {
@@ -325,6 +326,13 @@ function retry() {
 
 	$('#main').show();
 	$('#end').hide();
-	$('#input').focus();
-	startTimer();
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }

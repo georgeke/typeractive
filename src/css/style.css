@@ -13,7 +13,7 @@ html, textarea, img, div, * {
 }
 
 header {
-	background-color: orange;
+	background-color: rgb(249, 105, 14);
 	height: 100px;
 	width: 100%;
 	margin-bottom: 40px;
@@ -23,6 +23,16 @@ article {
 	width: 790px;
 	margin: 0 auto;
 	display: none;
+}
+
+h1 {
+	font-size: 75px;
+	color: white;
+	font-family: "Helvetica Neue", Helvetica, Sans-serif;
+	padding: 0px;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
 }
 
 textarea {
@@ -35,7 +45,7 @@ textarea {
 	overflow: hidden;
 	display: block;
 	resize: none;
-	border-color: orange;
+	border-color: rgb(249, 105, 14);
 	border-style: solid;
 	box-sizing: border-box; /*dimens accounts for padding/margin*/
 	background-color: white;
@@ -55,11 +65,12 @@ div.header {
 
 div.topBar {
 	position:relative;
-	background-color: orange;
+	background-color: rgb(249, 105, 14);
 	width: 790px;
 	height: 90px;
 	padding: 5px;
 	padding-top: 10px;
+	display: table;
 	box-sizing: border-box;
 	z-index: 0;
 }
@@ -73,9 +84,23 @@ div.middleBar {
 
 div.bottomBar {
 	position:relative;
-	background-color: orange;
+	background-color: rgb(249, 105, 14);
 	width: 790px;
 	height: 152px;
+}
+
+div.screen {
+	display: none;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;	
+	position: absolute;
+	background-color: rgb(249, 105, 14);
+	box-sizing: border-box;
+	width: 790px;
+	height: 595px;
+	z-index: 10;
 }
 /*
 .border {
@@ -86,7 +111,7 @@ div.bottomBar {
 /**
  * Main app
  */
-.arrow {
+#arrow {
 	margin: 0 auto;
 	width: 0;
 	height: 0;
@@ -99,34 +124,32 @@ div.bottomBar {
 .downArrow {
 	border-top: 12px solid Gold;
 	border-bottom: 0px solid transparent;
-}
+	}
 
-.downArrow:hover {
-	border-top: 12px solid Yellow;
-}
+	.downArrow:hover {
+		border-top: 12px solid Yellow;
+	}
 
 .upArrow {
 	border-bottom: 12px solid Gold;
 	border-top: 0px solid transparent;
-}
+	}
 
-.upArrow:hover {
-	border-bottom: 12px solid Yellow;
-}
+	.upArrow:hover {
+		border-bottom: 12px solid Yellow;
+	}
 
 .statBlock {
-	height: 40px;
-	width: 160px;
-	background-color: white;
-	border-left-width: 50px;
-	border-right-width: 50px;
-	border-top-width: 15px;
-	border-color: orange;
-	border-style: solid;
+	display: inline-block;
+	padding-top: 15px;
+	height: 55px;
+	width: 260px;
+	background-color: rgb(249, 105, 14);
 	float: left;
 }
 
 .statIcon {
+	padding-left: 50px;
 	width: 40px;
 	height: 40px;
 	float: left;
@@ -134,12 +157,32 @@ div.bottomBar {
 
 .stat {
 	font-family: Gill Sans MT;
-	font-size: 21px;
+	color: white;
+	font-size: 35px;
 	text-align: center;
 	line-height: 40px;
-	width: 75%;
+	width: 60px;
 	height: 100%;
 	float: left;
+}
+
+#acc {
+	width: 125px;
+}
+
+#time {
+	width: 98px;
+}
+
+#wpm {
+	padding-right: 5px;
+	text-align: right;
+}
+
+#wpmText {
+	text-align: left;
+	line-height: 30px;
+	font-size: 15px;
 }
 
 .content {
@@ -147,7 +190,7 @@ div.bottomBar {
 	font-family: Gill Sans MT;
 	line-height: 1.5em;
 	background-color: white;
-	border: 25px solid orange;
+	border: 25px solid rgb(249, 105, 14);
 	padding: 25px;
 	padding-top: 17px;
 	padding-bottom: 17px;
@@ -166,7 +209,7 @@ div.bottomBar {
 	cursor: auto;
 }
 
-.menuIcon {
+#menuIcon {
 	padding-top: 0px;
 	margin: 0 auto;
 	font-size: 34px;
@@ -175,41 +218,17 @@ div.bottomBar {
 	width: 1em;
 	cursor: pointer;
 	cursor: hand;
-}
+	}
 
-.menuIcon:hover {
-	color: yellow;
-}
+	#menuIcon:hover {
+		color: yellow;
+	}
 
 /**
  * Menu screen
  */
-.menu {
-	display: none;
-	left: 0;
-	right: 0;
-	padding-top: 30px;
-	margin-left: auto;
-	margin-right: auto;	
-	position: absolute;
-	background-color: orange;
-	box-sizing: border-box;
-	width: 790px;
-	height: 595px;
-	z-index: 10;
-}
-
-.title {
-	font-size: 45px;
-	font-family: Goudy Old Stout;
-	padding: 20px;
-	width: 100%;
-	box-sizing: border-box;
-	text-align: center;
-}
-
 .choices {
-	padding-top: 140px;
+	padding-top: 50px;
 	height: 120px;
 	display: table;
 	margin: 0 auto;
@@ -223,29 +242,30 @@ div.bottomBar {
 	cursor: pointer;
 	cursor: hand;
 	display: inline-block;
-}
+	}
 
-.choiceBlock:hover {
-	background-color: Gold;
-}
+	.choiceBlock:hover {
+		background-color: Gold;
+	}
 
 .choiceIcon {
 	width: 100px;
 	height: 100px;
 	cursor: pointer;
 	cursor: hand;
-}
+	}
 
-.choiceIcon:hover {
-	width: 100px;
-	height: 100px;
-	cursor: pointer;
-	cursor: hand;
-}
+	.choiceIcon:hover {
+		width: 100px;
+		height: 100px;
+		cursor: pointer;
+		cursor: hand;
+	}
 
 .choice {
 	margin: 0 auto;
-	font-size: 20px;
+	font-size: 21px;
+	color: white;
 	font-family: "Helvetica Neue", Helvetica, Sans-serif;
 	text-align: center;
 	cursor: pointer;
@@ -262,24 +282,22 @@ div.bottomBar {
     margin-left: auto;
     margin-right: auto;	
 	position: absolute;
-	background-color: orange;
+	background-color: rgb(249, 105, 14);
 	width: 790px;
 	height: 595px;
 	z-index: 11;
 }
 
-.catTitle {
+h1#catTitle {
 	font-size: 35px;
-	height: 85px;
 	width: 80%;
-	padding: 20px;
 	padding-left: 45px;
 	float: left;
 	text-align: left;
-	background-color: orange;
 }
 
-.backMenu {
+h1#backTitle {
+	font-size: 35px;
 	float: right;
 	padding-right: 45px;
 	text-align: right;
@@ -323,7 +341,7 @@ div.bottomBar {
 	margin: 0 auto;
 	width: 700px;
 	height: 420px;
-	background-color: orange;
+	background-color: rgb(249, 105, 14);
 	overflow-y: auto;
 }
 
@@ -332,11 +350,11 @@ div.bottomBar {
 	height: 40px;
 	padding: 10px;
 	padding-right: 20px;
-}
+	}
 
-.cat:hover {
-	background-color: Gold;
-}
+	.cat:hover {
+		background-color: Gold;
+	}
 
 .catName {
 	line-height: 40px;
@@ -367,18 +385,31 @@ div.bottomBar {
 /**
  * Loading screen
  */
- .loading {
- 	opacity: 0.3;
- 	background-color: gray;
- 	z-index: 20;
- }
+#loading {
+	opacity: 0.8;
+	background-color: yellow;
+	z-index: 50;
+}
+
+#loadingTitle {
+	position: relative;
+	top: 25%;
+	transform: translateY(-25%);
+}
+
+#loadingWheel {
+	width: 30px;
+	height: 30px;
+	top: 50%;     margin-top:  /* -(height/2) */;
+    left: 50%;    margin-left: /* -(width/2) */;
+}
 
  /**
  * End screen
  */
 
 .endPanel {
-	padding-top: 100px;
+	padding-top: 20px;
 	display: table;
 	height: 150px;
 	margin: 0 auto;
@@ -387,7 +418,7 @@ div.bottomBar {
 .endBlock {
 	padding-left: 20px;
 	padding-right: 20px;
-	width: 125px;
+	width: 150px;
 	height: 150px;
 	display: inline-block;
 	float: left;
@@ -407,11 +438,12 @@ div.bottomBar {
 
 .endStatBig {
 	width: 300px;
-	font-size: 81px;
+	font-size: 120px;
 }
 
 .endDesc {
 	color: black;
+	font-family: "Helvetica Neue", Helvetica, Sans-serif;
 	font-size: 25px;
 	text-align: center;
 	width: 100%;

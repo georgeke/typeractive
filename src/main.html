@@ -16,28 +16,22 @@
 	<div class="header">Typeractive</div>
 </header>
 
-<div class="menu loading border" id="loading">
-	<div class="title">Loading</div>
-	<div class="choices"></div>
-</div>
-
-
-<div class="menu border" id="menu">
-	<div class="title">Welcome</div>
+<div class="screen" id="menu">
+	<h1>Welcome</h1>
 	<div class="choices">
 		<div class="choiceBlock" onclick="Reader.getCats()">
-			<img src="img/ic_menu_random.png" class="choiceIcon">
+			<img src="img/ic_menu_random.png" class="choiceIcon" alt="random">
 			<div class="choice">Random</div>
 		</div>
 		<div class="choiceBlock" onclick="goToCat()">
-			<img src="img/ic_menu_categories.png" class="choiceIcon">
+			<img src="img/ic_menu_categories.png" class="choiceIcon" alt="cats">
 			<div class="choice">Categories</div>
 		</div>
 	</div>
 </div>
 
-<div class="menu border" id="end">
-	<div class="title">Done!</div>
+<div class="screen" id="end">
+	<h1>Done!</h1>
 	<div class="endPanel">
 		<div class="endBlock">
 			<div class="endStat" id="endTime"></div>
@@ -54,40 +48,40 @@
 	</div>
 	<div class="choices endChoices">
 		<div class="choiceBlock" onclick="retry()">
-			<img src="img/ic_restart.png" class="choiceIcon">
+			<img src="img/ic_restart.png" class="choiceIcon" alt="restart">
 			<div class="choice">Retry</div>
 		</div>
 		<div class="choiceBlock" onclick="endToMenu()">
-			<img src="img/ic_menu.png" class="choiceIcon">
+			<img src="img/ic_menu.png" class="choiceIcon" alt="menu">
 			<div class="choice">Menu</div>
 		</div>
 	</div>
 </div>
 
-<div class="menu border" id="pause">
-	<div class="title">Paused</div>
+<div class="screen" id="pause">
+	<h1>Paused</h1>
 	<div class="choices" id="choices">
 		<div class="choiceBlock" onclick="restart()">
-			<img src="img/ic_restart.png" class="choiceIcon">
+			<img src="img/ic_restart.png" class="choiceIcon" alt="restart">
 			<div class="choice">Restart</div>
 		</div>
 		<div class="choiceBlock" id="resume" onclick="resume()">
-			<img src="img/ic_resume.png" class="choiceIcon">
+			<img src="img/ic_resume.png" class="choiceIcon" alt="resume">
 			<div class="choice">Resume</div>
 		</div>
 		<div class="choiceBlock" onclick="pauseToMenu()">
-			<img src="img/ic_quit.png" class="choiceIcon">
+			<img src="img/ic_quit.png" class="choiceIcon" alt="quit">
 			<div class="choice">Quit</div>
 		</div>
 	</div>
 </div>
 
-<div class="categories border" id="categories">
-	<div class="title catTitle">Pick A Category</div>
-	<div class="title catTitle backMenu" onclick="catToMenu()">Back</div>
+<div class="categories" id="categories">
+	<h1 id="catTitle">Pick A Category</h1>
+	<h1 id="backTitle" onclick="catToMenu()">Back</h1>
 	<div class="search">
 		<div class="searchBar">
-			<img src="img/ic_search.png" class="searchIcon" onclick="$('#searchInput').focus();">
+			<img src="img/ic_search.png" class="searchIcon" onclick="$('#searchInput').focus();" alt="search">
 			<input type="text" spellcheck='false' class="searchInput" id="searchInput" oninput="filterCats(this.value)">
 		</div>
 		<div class="catList" id="catList">
@@ -100,28 +94,34 @@
 	</div>
 </div>
 
+<div class="screen" id="loading">
+	<h1 id="loadingTitle">Loading</h1>
+	<img id="loadingWheel" src="img/loading_wheel2.gif" alt="spinner">
+</div>
+
 <article id="main">
 	<div class="topBar border" id="topBar">
-		<div class="arrow downArrow" onclick="toggleArrow(this)"></div>
+		<div id="arrow" class="downArrow" onclick="toggleArrow(this)"></div>
 		<div class="statBlock">
-			<img src="img/ic_wpm.png" class="statIcon">
-			<div class="stat" id="wpm">0 WPM</div>
+			<img src="img/ic_wpm.png" class="statIcon" alt="wpm">
+			<div class="stat" id="wpm">0</div>
+			<div class="stat" id="wpmText">WPM</div>
 		</div>
 		<div class="statBlock">
-			<img src="img/ic_time.png" class="statIcon">
+			<img src="img/ic_time.png" class="statIcon" alt="time">
 			<div class="stat" id="time">0:00</div>
 		</div>
 		<div class="statBlock">
-			<img src="img/ic_acc.png" class="statIcon">
-			<div class="stat" id="acc">100%</div>
+			<img src="img/ic_acc.png" class="statIcon" alt="accuracy">
+			<div class="stat" id="acc">100.0%</div>
 		</div>
 	</div>
 	<div class="middleBar">
 		<div class="content" id="content"></div>
 	</div>
 	<div class="bottomBar">
-		<textarea spellcheck='false' class="input" id="input" oninput="updateTest(this.value)"></textarea>
-		<div class="menuIcon" onclick="pauseMenu()">☰</div>
+		<textarea spellcheck='false' class="input" id="input" placeholder="Type to start" oninput="updateTest(this.value)"></textarea>
+		<div id="menuIcon" onclick="pauseMenu()">☰</div>
 	</div>
 </article>
 
