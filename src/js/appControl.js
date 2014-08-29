@@ -74,7 +74,6 @@ function updateTimer() {
 		s = "0"+s;
 	}
 	$("#time").html(m+":"+s);
-	debugger;
 	this.timer = setTimeout(function(){updateTimer();}, 1000);
 }
 
