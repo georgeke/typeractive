@@ -400,9 +400,13 @@ h1#backTitle {
 #loadingWheel {
 	width: 30px;
 	height: 30px;
-	top: 50%;     margin-top:  /* -(height/2) */;
-    left: 50%;    margin-left: /* -(width/2) */;
+	top: 50%;
+	margin-top: 100px;
+	left: 50%;
+	margin-left: 395px;
 }
+/* -(height/2) */
+/* -(width/2) */
 
  /**
  * End screen
