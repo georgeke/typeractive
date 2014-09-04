@@ -2,127 +2,127 @@
 
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Typeract!ve</title>
-	<script src="js/DBReader.js"></script>
-	<script src="js/appControl.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <meta charset="UTF-8">
+    <title>Typeract!ve</title>
+    <script src="js/DBReader.js"></script>
+    <script src="js/appControl.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body onload="setup();">
 
 <header>
-	<div class="header">Typeractive</div>
+    <div class="header">Typeractive</div>
 </header>
 
 <div class="screen" id="menu">
-	<h1>Welcome</h1>
-	<div class="choices">
-		<div class="choiceBlock" onclick="Reader.getCats()">
-			<img src="img/ic_menu_random.png" class="choiceIcon" alt="random">
-			<div class="choice">Random</div>
-		</div>
-		<div class="choiceBlock" onclick="goToCat()">
-			<img src="img/ic_menu_categories.png" class="choiceIcon" alt="cats">
-			<div class="choice">Categories</div>
-		</div>
-	</div>
+    <h1>Welcome</h1>
+    <div class="choices">
+        <div class="choiceBlock" onclick="Reader.getCats()">
+            <img src="img/ic_menu_random.png" class="choiceIcon" alt="random">
+            <div class="choice">Random</div>
+        </div>
+        <div class="choiceBlock" onclick="goToCat()">
+            <img src="img/ic_menu_categories.png" class="choiceIcon" alt="cats">
+            <div class="choice">Categories</div>
+        </div>
+    </div>
 </div>
 
 <div class="screen" id="end">
-	<h1>Done!</h1>
-	<div class="endPanel">
-		<div class="endBlock">
-			<div class="endStat" id="endTime"></div>
-			<div class="endDesc">Time Taken</div>
-		</div>
-		<div class="endBlock endBlockBig">
-			<div class="endStat endStatBig" id="endWPM"></div>
-			<div class="endDesc endDescBig">Words Per Minute</div>
-		</div>		
-		<div class="endBlock">
-			<div class="endStat" id="endAcc"></div>
-			<div class="endDesc">Accuracy</div>
-		</div>	
-	</div>
-	<div class="choices endChoices">
-		<div class="choiceBlock" onclick="retry()">
-			<img src="img/ic_restart.png" class="choiceIcon" alt="restart">
-			<div class="choice">Retry</div>
-		</div>
-		<div class="choiceBlock" onclick="endToMenu()">
-			<img src="img/ic_menu.png" class="choiceIcon" alt="menu">
-			<div class="choice">Menu</div>
-		</div>
-	</div>
+    <h1 id="endMessage">Done!</h1>
+    <div class="endPanel">
+        <div class="endBlock">
+            <div class="endStat" id="endTime"></div>
+            <div class="endDesc">Time Taken</div>
+        </div>
+        <div class="endBlock endBlockBig">
+            <div class="endStat endStatBig" id="endWPM"></div>
+            <div class="endDesc endDescBig">Words Per Minute</div>
+        </div>      
+        <div class="endBlock">
+            <div class="endStat" id="endAcc"></div>
+            <div class="endDesc">Accuracy</div>
+        </div>  
+    </div>
+    <div class="choices endChoices">
+        <div class="choiceBlock" onclick="retry()">
+            <img src="img/ic_restart.png" class="choiceIcon" alt="restart">
+            <div class="choice">Retry</div>
+        </div>
+        <div class="choiceBlock" onclick="endToMenu()">
+            <img src="img/ic_menu.png" class="choiceIcon" alt="menu">
+            <div class="choice">Menu</div>
+        </div>
+    </div>
 </div>
 
 <div class="screen" id="pause">
-	<h1>Paused</h1>
-	<div class="choices" id="choices">
-		<div class="choiceBlock" onclick="restart()">
-			<img src="img/ic_restart.png" class="choiceIcon" alt="restart">
-			<div class="choice">Restart</div>
-		</div>
-		<div class="choiceBlock" id="resume" onclick="resume()">
-			<img src="img/ic_resume.png" class="choiceIcon" alt="resume">
-			<div class="choice">Resume</div>
-		</div>
-		<div class="choiceBlock" onclick="pauseToMenu()">
-			<img src="img/ic_quit.png" class="choiceIcon" alt="quit">
-			<div class="choice">Quit</div>
-		</div>
-	</div>
+    <h1>Paused</h1>
+    <div class="choices" id="choices">
+        <div class="choiceBlock" onclick="restart()">
+            <img src="img/ic_restart.png" class="choiceIcon" alt="restart">
+            <div class="choice">Restart</div>
+        </div>
+        <div class="choiceBlock" id="resume" onclick="resume()">
+            <img src="img/ic_resume.png" class="choiceIcon" alt="resume">
+            <div class="choice">Resume</div>
+        </div>
+        <div class="choiceBlock" onclick="pauseToMenu()">
+            <img src="img/ic_quit.png" class="choiceIcon" alt="quit">
+            <div class="choice">Quit</div>
+        </div>
+    </div>
 </div>
 
 <div class="categories" id="categories">
-	<h1 id="catTitle">Pick A Category</h1>
-	<h1 id="backTitle" onclick="catToMenu()">Back</h1>
-	<div class="search">
-		<div class="searchBar">
-			<img src="img/ic_search.png" class="searchIcon" onclick="$('#searchInput').focus();" alt="search">
-			<input type="text" spellcheck='false' class="searchInput" id="searchInput" oninput="filterCats(this.value)">
-		</div>
-		<div class="catList" id="catList">
-			<div class="cat" onmouseenter="$('#playArrow').show();" onmouseleave="$('#playArrow').hide();">
-				<div class="catName"></div>
-				<div class="playArrow" id="playArrow" onmouseenter="$('#play').show();" onmouseleave="$('#play').hide();"></div>
-				<div class="catName play" id="play">Play</div>				
-			</div>
-		</div>
-	</div>
+    <h1 id="catTitle">Pick A Category</h1>
+    <h1 id="backTitle" onclick="catToMenu()">Back</h1>
+    <div class="search">
+        <div class="searchBar">
+            <img src="img/ic_search.png" class="searchIcon" onclick="$('#searchInput').focus();" alt="search">
+            <input type="text" spellcheck='false' class="searchInput" id="searchInput" oninput="filterCats(this.value)">
+        </div>
+        <div class="catList" id="catList">
+            <div class="cat" onmouseenter="$('#playArrow').show();" onmouseleave="$('#playArrow').hide();">
+                <div class="catName"></div>
+                <div class="playArrow" id="playArrow" onmouseenter="$('#play').show();" onmouseleave="$('#play').hide();"></div>
+                <div class="catName play" id="play">Play</div>              
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="screen" id="loading">
-	<h1 id="loadingTitle">Loading</h1>
-	<img id="loadingWheel" src="img/loading_wheel2.gif" alt="spinner">
+    <h1 id="loadingTitle">Loading</h1>
+    <img id="loadingWheel" src="img/loading_wheel2.gif" alt="spinner">
 </div>
 
 <article id="main">
-	<div class="topBar border" id="topBar">
-		<div id="arrow" class="downArrow" onclick="toggleArrow(this)"></div>
-		<div class="statBlock">
-			<img src="img/ic_wpm.png" class="statIcon" alt="wpm">
-			<div class="stat" id="wpm">0</div>
-			<div class="stat" id="wpmText">WPM</div>
-		</div>
-		<div class="statBlock">
-			<img src="img/ic_time.png" class="statIcon" alt="time">
-			<div class="stat" id="time">0:00</div>
-		</div>
-		<div class="statBlock">
-			<img src="img/ic_acc.png" class="statIcon" alt="accuracy">
-			<div class="stat" id="acc">100.0%</div>
-		</div>
-	</div>
-	<div class="middleBar">
-		<div class="content" id="content"></div>
-	</div>
-	<div class="bottomBar">
-		<textarea spellcheck='false' class="input" id="input" oninput="updateTest(this.value)"></textarea>
-		<div id="menuIcon" onclick="pauseMenu()">☰</div>
-	</div>
+    <div class="topBar border" id="topBar">
+        <div id="arrow" class="downArrow" onclick="toggleArrow(this)"></div>
+        <div class="statBlock">
+            <img src="img/ic_wpm.png" class="statIcon" alt="wpm">
+            <div class="stat" id="wpm">0</div>
+            <div class="stat" id="wpmText">WPM</div>
+        </div>
+        <div class="statBlock">
+            <img src="img/ic_time.png" class="statIcon" alt="time">
+            <div class="stat" id="time">0:00</div>
+        </div>
+        <div class="statBlock">
+            <img src="img/ic_acc.png" class="statIcon" alt="accuracy">
+            <div class="stat" id="acc">100.0%</div>
+        </div>
+    </div>
+    <div class="middleBar">
+        <div class="content" id="content"></div>
+    </div>
+    <div class="bottomBar">
+        <textarea spellcheck='false' class="input" id="input" oninput="updateTest(this.value)"></textarea>
+        <div id="menuIcon" onclick="pauseMenu()">☰</div>
+    </div>
 </article>
 
 </body>

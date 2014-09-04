@@ -2,408 +2,408 @@
  * General
  */
 html, textarea, img, div, * {
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	-webkit-user-drag: none;
-	cursor: default;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-drag: none;
+    cursor: default;
 }
 
 header {
-	background-color: rgb(249, 105, 14);
-	height: 100px;
-	width: 100%;
-	margin-bottom: 40px;
+    background-color: rgb(249, 105, 14);
+    height: 100px;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 article {
-	width: 790px;
-	margin: 0 auto;
-	display: none;
+    width: 790px;
+    margin: 0 auto;
+    display: none;
 }
 
 h1 {
-	font-size: 75px;
-	color: white;
-	font-family: "Helvetica Neue", Helvetica, Sans-serif;
-	padding: 0px;
-	width: 100%;
-	box-sizing: border-box;
-	text-align: center;
+    font-size: 75px;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Sans-serif;
+    padding: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 textarea {
-	font-family: Gill Sans MT;
-	font-size: 21px;
-	line-height: 1.5em;
-	padding: 24px;
-	padding-top: 12px;
-	outline: none;	/*for Chrome select highlight*/
-	overflow: hidden;
-	display: block;
-	resize: none;
-	border-color: rgb(249, 105, 14);
-	border-style: solid;
-	box-sizing: border-box; /*dimens accounts for padding/margin*/
-	background-color: white;
+    font-family: Gill Sans MT;
+    font-size: 21px;
+    line-height: 1.5em;
+    padding: 24px;
+    padding-top: 12px;
+    outline: none;  /*for Chrome select highlight*/
+    overflow: hidden;
+    display: block;
+    resize: none;
+    border-color: rgb(249, 105, 14);
+    border-style: solid;
+    box-sizing: border-box; /*dimens accounts for padding/margin*/
+    background-color: white;
 }
 
 /**
  * Main screen general layout
  */
 div.header {
-	padding-top: 15px;
-	font-size: 50px;
-	font-family: "Helvetica Neue", Helvetica, Sans-serif;
-	font-weight: bold;
-	height: 1em;
-	text-align: center;
+    padding-top: 15px;
+    font-size: 50px;
+    font-family: "Helvetica Neue", Helvetica, Sans-serif;
+    font-weight: bold;
+    height: 1em;
+    text-align: center;
 }
 
 div.topBar {
-	position:relative;
-	background-color: rgb(249, 105, 14);
-	width: 790px;
-	height: 90px;
-	padding: 5px;
-	padding-top: 10px;
-	display: table;
-	box-sizing: border-box;
-	z-index: 0;
+    position:relative;
+    background-color: rgb(249, 105, 14);
+    width: 790px;
+    height: 90px;
+    padding: 5px;
+    padding-top: 10px;
+    display: table;
+    box-sizing: border-box;
+    z-index: 0;
 }
 
 div.middleBar {
-	position:relative;
-	border-top: 3px solid Gold;
-	width: 790px;
-	height: 350px;
+    position:relative;
+    border-top: 3px solid Gold;
+    width: 790px;
+    height: 350px;
 }
 
 div.bottomBar {
-	position:relative;
-	background-color: rgb(249, 105, 14);
-	width: 790px;
-	height: 152px;
+    position:relative;
+    background-color: rgb(249, 105, 14);
+    width: 790px;
+    height: 152px;
 }
 
 div.screen {
-	display: none;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;	
-	position: absolute;
-	background-color: rgb(249, 105, 14);
-	box-sizing: border-box;
-	width: 790px;
-	height: 595px;
-	z-index: 10;
+    display: none;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; 
+    position: absolute;
+    background-color: rgb(249, 105, 14);
+    box-sizing: border-box;
+    width: 790px;
+    height: 595px;
+    z-index: 10;
 }
 /*
 .border {
-	border-top: 3px solid Gold;
-	border-right: 3px solid Gold;
+    border-top: 3px solid Gold;
+    border-right: 3px solid Gold;
 }*/
 
 /**
  * Main app
  */
 #arrow {
-	margin: 0 auto;
-	width: 0;
-	height: 0;
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	cursor: pointer;
-	cursor: hand;	
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    cursor: pointer;
+    cursor: hand;   
 }
 
 .downArrow {
-	border-top: 12px solid Gold;
-	border-bottom: 0px solid transparent;
-	}
+    border-top: 12px solid Gold;
+    border-bottom: 0px solid transparent;
+    }
 
-	.downArrow:hover {
-		border-top: 12px solid Yellow;
-	}
+    .downArrow:hover {
+        border-top: 12px solid Yellow;
+    }
 
 .upArrow {
-	border-bottom: 12px solid Gold;
-	border-top: 0px solid transparent;
-	}
+    border-bottom: 12px solid Gold;
+    border-top: 0px solid transparent;
+    }
 
-	.upArrow:hover {
-		border-bottom: 12px solid Yellow;
-	}
+    .upArrow:hover {
+        border-bottom: 12px solid Yellow;
+    }
 
 .statBlock {
-	display: inline-block;
-	padding-top: 15px;
-	height: 55px;
-	width: 210px;
-	padding-left: 50px;
-	background-color: rgb(249, 105, 14);
-	float: left;
+    display: inline-block;
+    padding-top: 15px;
+    height: 55px;
+    width: 210px;
+    padding-left: 50px;
+    background-color: rgb(249, 105, 14);
+    float: left;
 }
 
 .statIcon {
-	width: 40px;
-	height: 40px;
-	float: left;
+    width: 40px;
+    height: 40px;
+    float: left;
 }
 
 .stat {
-	font-family: Gill Sans MT;
-	color: white;
-	font-size: 35px;
-	text-align: center;
-	line-height: 40px;
-	width: 60px;
-	height: 100%;
-	float: left;
+    font-family: Gill Sans MT;
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    line-height: 40px;
+    width: 60px;
+    height: 100%;
+    float: left;
 }
 
 #acc {
-	width: 125px;
+    width: 125px;
 }
 
 #time {
-	width: 98px;
+    width: 98px;
 }
 
 #wpm {
-	padding-right: 5px;
-	text-align: right;
+    padding-right: 5px;
+    text-align: right;
 }
 
 #wpmText {
-	text-align: left;
-	line-height: 30px;
-	font-size: 15px;
+    text-align: left;
+    line-height: 30px;
+    font-size: 15px;
 }
 
 .content {
-	font-size: 25px;
-	font-family: Gill Sans MT;
-	line-height: 1.5em;
-	background-color: white;
-	border: 25px solid rgb(249, 105, 14);
-	padding: 25px;
-	padding-top: 17px;
-	padding-bottom: 17px;
-	box-sizing: border-box;
-	height: 100%;
-	width: 100%;	
+    font-size: 25px;
+    font-family: Gill Sans MT;
+    line-height: 1.5em;
+    background-color: white;
+    border: 25px solid rgb(249, 105, 14);
+    padding: 25px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;    
 }
 
 .input {
-	font-size: 25px;
-	background-color: white;
-	margin-top: 0;
-	border-right-width: 25px;
-	border-left-width: 25px;
-	width: 100%;
-	cursor: auto;
+    font-size: 25px;
+    background-color: white;
+    margin-top: 0;
+    border-right-width: 25px;
+    border-left-width: 25px;
+    width: 100%;
+    cursor: auto;
 }
 
 #menuIcon {
-	padding-top: 0px;
-	margin: 0 auto;
-	font-size: 34px;
-	font-family: Serif;
-	color: Gold;
-	width: 1em;
-	cursor: pointer;
-	cursor: hand;
-	}
+    padding-top: 0px;
+    margin: 0 auto;
+    font-size: 34px;
+    font-family: Serif;
+    color: Gold;
+    width: 1em;
+    cursor: pointer;
+    cursor: hand;
+    }
 
-	#menuIcon:hover {
-		color: yellow;
-	}
+    #menuIcon:hover {
+        color: yellow;
+    }
 
 /**
  * Menu screen
  */
 .choices {
-	padding-top: 50px;
-	height: 120px;
-	display: table;
-	margin: 0 auto;
+    padding-top: 50px;
+    height: 120px;
+    display: table;
+    margin: 0 auto;
 }
 
 .choiceBlock {
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	float: left;
-	cursor: pointer;
-	cursor: hand;
-	display: inline-block;
-	}
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    }
 
-	.choiceBlock:hover {
-		background-color: Gold;
-	}
+    .choiceBlock:hover {
+        background-color: Gold;
+    }
 
 .choiceIcon {
-	width: 100px;
-	height: 100px;
-	cursor: pointer;
-	cursor: hand;
-	}
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    cursor: hand;
+    }
 
-	.choiceIcon:hover {
-		width: 100px;
-		height: 100px;
-		cursor: pointer;
-		cursor: hand;
-	}
+    .choiceIcon:hover {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        cursor: hand;
+    }
 
 .choice {
-	margin: 0 auto;
-	font-size: 21px;
-	color: white;
-	font-family: "Helvetica Neue", Helvetica, Sans-serif;
-	text-align: center;
-	cursor: pointer;
-	cursor: hand;
+    margin: 0 auto;
+    font-size: 21px;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Sans-serif;
+    text-align: center;
+    cursor: pointer;
+    cursor: hand;
 }
 
 /**
  * Categories screen
  */
 .categories {
-	display: none;
+    display: none;
     left: 0;
     right: 0;
     margin-left: auto;
-    margin-right: auto;	
-	position: absolute;
-	background-color: rgb(249, 105, 14);
-	width: 790px;
-	height: 595px;
-	z-index: 11;
+    margin-right: auto; 
+    position: absolute;
+    background-color: rgb(249, 105, 14);
+    width: 790px;
+    height: 595px;
+    z-index: 11;
 }
 
 h1#catTitle {
-	font-size: 35px;
-	width: 80%;
-	padding-left: 45px;
-	float: left;
-	text-align: left;
+    font-size: 35px;
+    width: 80%;
+    padding-left: 45px;
+    float: left;
+    text-align: left;
 }
 
 h1#backTitle {
-	font-size: 35px;
-	float: right;
-	padding-right: 45px;
-	text-align: right;
-	width: 20%;
-	cursor: pointer;
-	cursor: hand;
+    font-size: 35px;
+    float: right;
+    padding-right: 45px;
+    text-align: right;
+    width: 20%;
+    cursor: pointer;
+    cursor: hand;
 }
 
 .search {
-	height: 475px;
-	margin: 0 auto;
-	width: 720px;
-	background-color: white;
+    height: 475px;
+    margin: 0 auto;
+    width: 720px;
+    background-color: white;
 }
 
 .searchBar {
-	width: 700px;
-	height: 45px;
-	margin: 0 auto;
-	margin-top: 90px;
+    width: 700px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 90px;
 }
 
 .searchInput {
-	float:left;
-	width: 638px;
-	height: 43px;
-	border: none;
-	font-size: 30px;
-	resize: none;
-	outline: none; 
+    float:left;
+    width: 638px;
+    height: 43px;
+    border: none;
+    font-size: 30px;
+    resize: none;
+    outline: none; 
 }
 
 .searchIcon {
-	width: 40px;
-	height: 40px;
-	float: left;
-	margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 12px;
 }
 
 .catList {
-	margin: 0 auto;
-	width: 700px;
-	height: 420px;
-	background-color: rgb(249, 105, 14);
-	overflow-y: auto;
+    margin: 0 auto;
+    width: 700px;
+    height: 420px;
+    background-color: rgb(249, 105, 14);
+    overflow-y: auto;
 }
 
 .cat {
-	width: 670px;
-	height: 40px;
-	padding: 10px;
-	padding-right: 20px;
-	}
+    width: 670px;
+    height: 40px;
+    padding: 10px;
+    padding-right: 20px;
+    }
 
-	.cat:hover {
-		background-color: Gold;
-	}
+    .cat:hover {
+        background-color: Gold;
+    }
 
 .catName {
-	line-height: 40px;
-	font-size: 30px;
-	font-family: "Helvetica Neue", Helvetica, Sans-serif;
-	color: white;
-	float: left;
+    line-height: 40px;
+    font-size: 30px;
+    font-family: "Helvetica Neue", Helvetica, Sans-serif;
+    color: white;
+    float: left;
 }
 
 .play {
-	display: none;
-	float: right;
-	padding-right: 30px;
+    display: none;
+    float: right;
+    padding-right: 30px;
 }
 
 .playArrow {
-	display: none;
-	float: right;
-	width: 0;
-	height: 0;
-	border-top: 18px solid transparent;
-	border-bottom: 18px solid transparent;
-	border-left: 21px solid white;
-	cursor: pointer;
-	cursor: hand;
+    display: none;
+    float: right;
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 21px solid white;
+    cursor: pointer;
+    cursor: hand;
 }
 
 /**
  * Loading screen
  */
 #loading {
-	opacity: 0.8;
-	background-color: yellow;
-	z-index: 50;
+    opacity: 0.8;
+    background-color: yellow;
+    z-index: 50;
 }
 
 #loadingTitle {
-	position: relative;
-	top: 25%;
-	transform: translateY(-25%);
+    position: relative;
+    top: 25%;
+    transform: translateY(-25%);
 }
 
 #loadingWheel {
-	width: 30px;
-	height: 30px;
-	top: 50%;
-	margin-top: 100px;
-	left: 50%;
-	margin-left: 395px;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    margin-top: 100px;
+    left: 50%;
+    margin-left: 395px;
 }
 /* -(height/2) */
 /* -(width/2) */
@@ -413,50 +413,50 @@ h1#backTitle {
  */
 
 .endPanel {
-	padding-top: 20px;
-	display: table;
-	height: 150px;
-	margin: 0 auto;
+    padding-top: 20px;
+    display: table;
+    height: 150px;
+    margin: 0 auto;
 }
 
 .endBlock {
-	padding-left: 20px;
-	padding-right: 20px;
-	width: 150px;
-	height: 150px;
-	display: inline-block;
-	float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    float: left;
 }
 
 .endBlockBig {
-	height: 150px;
-	width: 300px;
+    height: 150px;
+    width: 300px;
 }
 
 .endStat {
-	width: 100%;
-	font-size: 40px;
-	color: white;
-	text-align: center;
+    width: 100%;
+    font-size: 40px;
+    color: white;
+    text-align: center;
 }
 
 .endStatBig {
-	width: 300px;
-	font-size: 120px;
+    width: 300px;
+    font-size: 120px;
 }
 
 .endDesc {
-	color: black;
-	font-family: "Helvetica Neue", Helvetica, Sans-serif;
-	font-size: 25px;
-	text-align: center;
-	width: 100%;
+    color: black;
+    font-family: "Helvetica Neue", Helvetica, Sans-serif;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
 }
 
 .endDescBig {
-	font-size: 35px;
+    font-size: 35px;
 }
 
 .endChoices {
-	padding-top: 50px;
+    padding-top: 50px;
 }
