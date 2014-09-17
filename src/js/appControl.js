@@ -40,7 +40,7 @@ function setup() {
 function toggleArrow(el) {
     $(el).toggleClass("downArrow");
     $(el).toggleClass("upArrow");
-    
+
     if ($(el).hasClass("downArrow")) {
         $('#topBar').css("position", "relative").animate({
             top:  0
@@ -96,15 +96,15 @@ function getEndMessage(wpm) {
     } else if (wpm <= 70) {
         return getRandomMessage(
             ["Not bad!", "Go get it!", "Sauve!", "Cool!"]
-        );  
+        );
     } else if (wpm <= 80) {
         return getRandomMessage(
             ["Legit!", "Nice!", "You rock!", "Tell em'!", "That's it!"]
-        );  
+        );
     } else if (wpm <= 98) {
         return getRandomMessage(
             ["Astounding!", "Teach me!", "Showstopper!", "Nice one!", "Grrrrrreat", "Nice nice nice", "Super!", "Solid."]
-        );  
+        );
     } else if (wpm === 99) {
         return "Almost to 100!";
     } else if (wpm === 100) {
@@ -112,7 +112,7 @@ function getEndMessage(wpm) {
     } else if (wpm <= 120) {
         return getRandomMessage(
             ["Amazing!!", "Unstoppable!!", "Tip top!!", "Beast Mode: ON"]
-        );  
+        );
     } else {
         return getRandomMessage(
             ["You're a MONSTER!", "Are you human??", "Cowabunga~"]
@@ -303,9 +303,10 @@ function startGame(paras) {
 
     var sentences = [];
     for (var i = 0 ; i < paras.length ; i++) {
-        // [^A-Z\s.!?][^\s.!?]:     Ignores things like A. or G.
+        // [a-z][^\s.!?]:           Matches non-capital char, then any char
+        //                          This filters Sr., G., (c. ), etc.
         // ["'\)]?:                 Match chars such as " after the period.
-        var re = /([^A-Z\s.!?][^\s.!?][.!?]["'\)]*?)\s/gi;
+        var re = /([a-z][^\s.!?][.!?]["'\)]*?)\s/g;
 
         // Some paragraphs have trailing whitespace.
         paras[i] = paras[i].trim();
@@ -317,7 +318,7 @@ function startGame(paras) {
             if (j+1 < result.length) {
                 sentence += result[j+1];
             }
-            
+
             sentence = sentence.trim();
             sentences.push(sentence);
         }
