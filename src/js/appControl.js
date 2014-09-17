@@ -11,6 +11,8 @@ var seconds = 0;
 // index of current choice on category screen
 var choiceIndex = -1;
 var choices = [];
+var catNameList = [];
+var catFilterList = [];
 
 // General
 function resetGame() {
@@ -27,7 +29,7 @@ function resetGame() {
 
 function setup() {
     // Binding key shortcuts
-    $(document).keyup(keyBindFunc);
+    $(document).keydown(keyBindFunc);
 
     $('#menu').show();
 
@@ -44,6 +46,11 @@ function setup() {
 
 function keyBindFunc(e) {
     var key = e.keyCode ? e.keyCode : e.which;
+
+    // Prevent backspace default if not inputting
+    if ($('#searchInput').is(':not(:focus)') && $('#input').is(':not(:focus)') && key === 8) {
+        e.preventDefault();
+    }
 
     if ($('#loading').is(':not(:visible)')) {
         if ($('#main').is(':not(:hidden)')) {
@@ -75,31 +82,55 @@ function keyBindFunc(e) {
                 endToMenu();
             }
         } else if($('#categories').is(':not(:hidden)')) {
-            // Cats: ESC, Up, Down, Enter
+            // Cats: ESC, Up, Down, Enter, Tab
             if (key === 27) {
                 catToMenu();
             } else if (key === 38) {
+                e.preventDefault();
                 if (choiceIndex > 0) {
-                    $('#cat'+choices[choiceIndex]).trigger('mouseleave');
+                    onLeaveCat(choices[choiceIndex]);
                     choiceIndex--;
-                    $('#cat'+choices[choiceIndex]).trigger('mouseenter');
+                    onHoverCat(choices[choiceIndex]);
+
+                    document.getElementById("catList").scrollTop -= 50;
                 }
             } else if (key === 40) {
+                e.preventDefault();
                 if (choiceIndex < choices.length-1) {
-                    $('#cat'+choices[choiceIndex]).trigger('mouseleave');
-                    choiceIndex++;
-                    $('#cat'+choices[choiceIndex]).trigger('mouseenter');
-                }
-            } else if (key == 15) {
+                    if (choiceIndex === -1) {
+                        document.getElementById("catList").scrollTop = 0;
+                    }
 
+                    onLeaveCat(choices[choiceIndex]);
+                    choiceIndex++;
+                    onHoverCat(choices[choiceIndex]);
+
+                    // Scroll down if overflow
+                    if (choiceIndex > 7) {
+                        document.getElementById("catList").scrollTop += 50;
+                    }
+                }
+            } else if (key === 13) {
+                if (choiceIndex >= 0) {
+                    debugger;
+                    if ($('#searchInput').html != "") {
+                        startCat(catFilterList[choiceIndex]);
+                    } else {
+                        startCat(catNameList[choiceIndex]);
+                    }
+                }
+            } else if (key === 9) {
+                e.preventDefault();
+                debugger;
+                if ($('#searchInput').is(':focus')) {
+                    $('#searchInput').blur();
+                } else {
+                    $('#searchInput').focus();
+                }
             }
         }
     }
 }
-
-// Declaring function object name. This will be defined in showCategories.
-// Need to do this as
-var catKeyBindFunc;
 
 // Main
 function toggleArrow(el) {
@@ -209,7 +240,7 @@ function updateTest(input) {
             $('#letter'+i).css('background-color', 'orange');
 
             // Ending the game.
-            if (i===test.length-1 || true) {
+            if (i===test.length-1) {
                 // Or else you cen keep typing...
                 $('#input').blur();
 
@@ -315,6 +346,7 @@ function catToMenu() {
 function showCategories(cats) {
     var newHTML = "";
     cats.sort();
+    this.catNameList = cats;
     // Compile an array of the ids of each choice being displayed.
     this.choices = [];
 
@@ -323,7 +355,7 @@ function showCategories(cats) {
 
         // Simpler to do this than to parse DOM elements.
         var item = "";
-        item += '<div class="cat" id="cat'+i+'" onmouseenter="onHoverCat('+i+');" onmouseleave="onLeaveCat('+i+');">';
+        item += '<div class="cat" id="cat'+i+'" onmouseenter="onHoverCat('+i+');" onmouseleave="onLeaveCat('+i+');choiceIndex=-1;">';
         item += '<div class="catName">'+cat.replace(/_/g, " ")+'</div>';
         item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();" onclick="startCat(\''+cat+'\')"></div>';
         item += '<div class="catName play" id="play'+i+'">Play</div>';
@@ -331,35 +363,41 @@ function showCategories(cats) {
         newHTML += item;
 
         choices.push(i);
-
-        // Add key bindings for each category.
-        // Enter to start game, up and down to change selection.
-        catKeyBindFunc = function (e) {
-            console.log("fdsf");
-        }
     }
 
     $('#catList').html(newHTML);
 }
 
 function onHoverCat(i) {
-    // Remove highlight of previous cat
-    $('#cat'+choiceIndex).removeClass('catHover');
-    $('#playArrow'+choiceIndex).hide();
+    if ($("#searchInput").is(":not(:focus)")) {
+        // Remove highlight of previous cat
+        $('#cat'+choiceIndex).removeClass('catHover');
+        $('#playArrow'+choiceIndex).hide();
 
-    this.choiceIndex = i;
-    $('#playArrow'+i).show();
-    $('#cat'+i).addClass('catHover');
+        this.choiceIndex = i;
+        $('#playArrow'+i).show();
+        $('#cat'+i).addClass('catHover');
+    }
 }
 
 function onLeaveCat(i) {
+    $('#cat'+choiceIndex).removeClass('catHover');
+    $('#playArrow'+choiceIndex).hide();
+
     $('#playArrow'+i).hide();
     $('#cat'+i).removeClass('catHover');
 }
 
 function filterCats(val) {
+    // Remove cat highlighting and choice index
+    $('#cat'+choiceIndex).removeClass('catHover');
+    $('#playArrow'+choiceIndex).hide();
+    this.choiceIndex = -1;
+
     var items = $.parseHTML($('#catList').html());
     var catId = 0;
+    // Get a list of cat names for Enter shortcut to start game
+    this.catFilterList = [];
 
     // Update array of choice ids based on filter
     this.choices = [];
@@ -373,13 +411,13 @@ function filterCats(val) {
             for (var j = 0 ; j < divs.length ; j++) {
                 if (divs[j].className === 'catName' && (divs[j].innerText.toLowerCase()).indexOf(val.toLowerCase()) === 0) {
                     $('#cat'+catId).show();
+                    this.choices.push(catId);
+                    this.catFilterList.push(catNameList[i]);
                     break;
                 } else {
                     $('#cat'+catId).hide();
                 }
             }
-
-            choices.push(catId);
 
             // Using separate count in case items have other random elements.
             catId++;

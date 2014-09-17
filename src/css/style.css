@@ -349,7 +349,7 @@ h1#backTitle {
 
 .cat {
     width: 670px;
-    height: 40px;
+    height: 30px;
     padding: 10px;
     padding-right: 20px;
     }
@@ -359,7 +359,7 @@ h1#backTitle {
 }
 
 .catName {
-    line-height: 40px;
+    line-height: 30px;
     font-size: 30px;
     font-family: "Helvetica Neue", Helvetica, Sans-serif;
     color: white;
@@ -369,7 +369,7 @@ h1#backTitle {
 .play {
     display: none;
     float: right;
-    padding-right: 30px;
+    padding-right: 15px;
 }
 
 .playArrow {
@@ -377,8 +377,8 @@ h1#backTitle {
     float: right;
     width: 0;
     height: 0;
-    border-top: 18px solid transparent;
-    border-bottom: 18px solid transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
     border-left: 21px solid white;
     cursor: pointer;
     cursor: hand;
