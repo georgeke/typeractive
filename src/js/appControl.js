@@ -1,4 +1,5 @@
 var MAX_CHARS = 400;
+var MAX_REROLL = 50;
 var paused = true;
 var timer;
 var catLoaded = false;
@@ -94,7 +95,7 @@ function getEndMessage(wpm) {
         return "Good!";
     } else if (wpm <= 70) {
         return getRandomMessage(
-            ["Not bad.", "Go get it!", "Sauve!"]
+            ["Not bad!", "Go get it!", "Sauve!", "Cool!"]
         );  
     } else if (wpm <= 80) {
         return getRandomMessage(
@@ -160,6 +161,7 @@ function updateTest(input) {
 
                 $('#end').show();
                 $('#main').hide();
+                this.resetGame();
             }
 
             // Set cursor to next letter and clear everything after.
@@ -251,7 +253,7 @@ function showCategories(cats) {
         // Simpler to do this than to parse DOM elements.
         var item = "";
         item += '<div class="cat" id="cat'+i+'" onmouseenter="$(\'#playArrow'+i+'\').show();" onmouseleave="$(\'#playArrow'+i+'\').hide();">';
-        item += '<div class="catName">'+cat.replace("_", " ")+'</div>';
+        item += '<div class="catName">'+cat.replace(/_/g, " ")+'</div>';
         item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();" onclick="startCat(\''+cat+'\')"></div>';
         item += '<div class="catName play" id="play'+i+'">Play</div>';
         item += '</div>';
@@ -321,7 +323,11 @@ function startGame(paras) {
         }
     }
 
+    // In case of infinite loop, set max re-roll.
+    var iterations = 0;
     do {
+        iterations++;
+
         // Random sentence index to start building with.
         var start = Math.floor(Math.random() * sentences.length);
         var test = "";
@@ -341,7 +347,7 @@ function startGame(paras) {
             }
         }
     // If test built is too short, reroll.
-    } while (test.length < 0.75*MAX_CHARS);
+    } while (test.length < 0.75*MAX_CHARS && iterations <= MAX_REROLL);
 
     test = test.trim();
     test = test.replace("/&nbsp;/g", " ");

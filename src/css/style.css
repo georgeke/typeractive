@@ -55,11 +55,12 @@ textarea {
  * Main screen general layout
  */
 div.header {
+    color: rgb(26, 26, 26);
     padding-top: 15px;
     font-size: 50px;
     font-family: "Helvetica Neue", Helvetica, Sans-serif;
     font-weight: bold;
-    height: 1em;
+    line-height: 65px;
     text-align: center;
 }
 
@@ -446,7 +447,7 @@ h1#backTitle {
 }
 
 .endDesc {
-    color: black;
+    color: rgb(26, 26, 26);
     font-family: "Helvetica Neue", Helvetica, Sans-serif;
     font-size: 25px;
     text-align: center;

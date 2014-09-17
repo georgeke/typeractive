@@ -2,8 +2,23 @@ Scraper = {
     base: 'http://en.wikipedia.org/w/api.php?format=json&callback=?',
     paras: null,
 
-    parsePage: function() {
-        var articleName = $('#urlForm').val();
+    /***
+     * Runs parsePage on each article name in the input field
+     */
+    parseInput: function() {
+        var input = $('#urlForm').val().trim();
+        var articleNames = input.split(/\s+/);
+
+        for (var i = 0 ; i < articleNames.length ; i++) {
+            debugger;
+            this.parsePage(articleNames[i]);
+        }
+    },
+
+    /***
+     * Extracts information from articleName and sends AJAX request to mongoDB
+     */
+    parsePage: function(articleName) {
         var payload = {
             action: 'query',
             prop: 'extracts',
@@ -12,7 +27,6 @@ Scraper = {
 
         // Get array of all paragraphs, placed in paras
         $.getJSON(this.base, payload, function(data) {
-            debugger;
             var pages = data['query']['pages'];
             var text = {};
 
