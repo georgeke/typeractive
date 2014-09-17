@@ -8,6 +8,9 @@ var test;
 var mistakes = 0;
 var charsTyped = 0;
 var seconds = 0;
+// index of current choice on category screen
+var choiceIndex = -1;
+var choices = [];
 
 // General
 function resetGame() {
@@ -23,6 +26,9 @@ function resetGame() {
 }
 
 function setup() {
+    // Binding key shortcuts
+    $(document).keyup(keyBindFunc);
+
     $('#menu').show();
 
     // Prevent image ghost drag.
@@ -35,6 +41,65 @@ function setup() {
         };
     }
 }
+
+function keyBindFunc(e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+
+    if ($('#loading').is(':not(:visible)')) {
+        if ($('#main').is(':not(:hidden)')) {
+            // Main: Bind ESC to pause game
+            if (key === 27) {
+                pauseMenu();
+            }
+        } else if ($('#menu').is(':not(:hidden)')) {
+            // Menu: R and C
+            if (key === 82) {
+                Reader.getCats();
+            } else if (key === 67) {
+                goToCat();
+            }
+        } else if ($('#pause').is(':not(:hidden)')) {
+            // Pause: R, E, Q, ESC
+            if (key === 82) {
+                restart();
+            } else if (key === 69 || key === 27) {
+                resume();
+            } else if (key === 81) {
+                pauseToMenu();
+            }
+        } else if ($('#end').is(':not(:hidden)')) {
+            // End: R, M
+            if (key === 82) {
+                retry();
+            } else if (key === 77) {
+                endToMenu();
+            }
+        } else if($('#categories').is(':not(:hidden)')) {
+            // Cats: ESC, Up, Down, Enter
+            if (key === 27) {
+                catToMenu();
+            } else if (key === 38) {
+                if (choiceIndex > 0) {
+                    $('#cat'+choices[choiceIndex]).trigger('mouseleave');
+                    choiceIndex--;
+                    $('#cat'+choices[choiceIndex]).trigger('mouseenter');
+                }
+            } else if (key === 40) {
+                if (choiceIndex < choices.length-1) {
+                    $('#cat'+choices[choiceIndex]).trigger('mouseleave');
+                    choiceIndex++;
+                    $('#cat'+choices[choiceIndex]).trigger('mouseenter');
+                }
+            } else if (key == 15) {
+
+            }
+        }
+    }
+}
+
+// Declaring function object name. This will be defined in showCategories.
+// Need to do this as
+var catKeyBindFunc;
 
 // Main
 function toggleArrow(el) {
@@ -144,7 +209,7 @@ function updateTest(input) {
             $('#letter'+i).css('background-color', 'orange');
 
             // Ending the game.
-            if (i===test.length-1) {
+            if (i===test.length-1 || true) {
                 // Or else you cen keep typing...
                 $('#input').blur();
 
@@ -212,6 +277,7 @@ function playRandom(cats) {
 
 function goToCat() {
     $('#categories').show();
+    $('#menu').hide();
     if (!catLoaded) {
         catLoaded = true;
         Reader.loadCats();
@@ -226,8 +292,10 @@ function pauseToMenu() {
 }
 
 function resume() {
+    startTimer()
     $('#pause').hide();
     $('#main').show();
+    $('#input').focus();
 }
 
 function restart() {
@@ -235,37 +303,66 @@ function restart() {
 
     $('#main').show();
     $('#pause').hide();
-    $('#input').blur();
+    $('#input').focus();
 }
 
 // Cat
 function catToMenu() {
     $('#categories').hide();
+    $('#menu').show();
 }
 
 function showCategories(cats) {
     var newHTML = "";
     cats.sort();
+    // Compile an array of the ids of each choice being displayed.
+    this.choices = [];
 
     for (var i = 0 ; i < cats.length ; i++) {
         var cat = cats[i];
 
         // Simpler to do this than to parse DOM elements.
         var item = "";
-        item += '<div class="cat" id="cat'+i+'" onmouseenter="$(\'#playArrow'+i+'\').show();" onmouseleave="$(\'#playArrow'+i+'\').hide();">';
+        item += '<div class="cat" id="cat'+i+'" onmouseenter="onHoverCat('+i+');" onmouseleave="onLeaveCat('+i+');">';
         item += '<div class="catName">'+cat.replace(/_/g, " ")+'</div>';
         item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();" onclick="startCat(\''+cat+'\')"></div>';
         item += '<div class="catName play" id="play'+i+'">Play</div>';
         item += '</div>';
         newHTML += item;
+
+        choices.push(i);
+
+        // Add key bindings for each category.
+        // Enter to start game, up and down to change selection.
+        catKeyBindFunc = function (e) {
+            console.log("fdsf");
+        }
     }
 
     $('#catList').html(newHTML);
 }
 
+function onHoverCat(i) {
+    // Remove highlight of previous cat
+    $('#cat'+choiceIndex).removeClass('catHover');
+    $('#playArrow'+choiceIndex).hide();
+
+    this.choiceIndex = i;
+    $('#playArrow'+i).show();
+    $('#cat'+i).addClass('catHover');
+}
+
+function onLeaveCat(i) {
+    $('#playArrow'+i).hide();
+    $('#cat'+i).removeClass('catHover');
+}
+
 function filterCats(val) {
     var items = $.parseHTML($('#catList').html());
     var catId = 0;
+
+    // Update array of choice ids based on filter
+    this.choices = [];
 
     // Loop through all divs with class cat and hide them if their name doesn't match the input.
     for (var i = 0 ; i < items.length ; i++) {
@@ -282,7 +379,9 @@ function filterCats(val) {
                 }
             }
 
-            // Using separate count in case items has other random elements.
+            choices.push(catId);
+
+            // Using separate count in case items have other random elements.
             catId++;
         }
     }
@@ -373,6 +472,7 @@ function startGame(paras) {
     }
 
     $('#content').html(newHTML);
+    $('#input').focus();
 }
 
 // End

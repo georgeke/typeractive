@@ -21,11 +21,11 @@
     <div class="choices">
         <div class="choiceBlock" onclick="Reader.getCats()">
             <img src="img/ic_menu_random.png" class="choiceIcon" alt="random">
-            <div class="choice">Random</div>
+            <div class="choice">Random (R)</div>
         </div>
         <div class="choiceBlock" onclick="goToCat()">
             <img src="img/ic_menu_categories.png" class="choiceIcon" alt="cats">
-            <div class="choice">Categories</div>
+            <div class="choice">Categories (C)</div>
         </div>
     </div>
 </div>
@@ -40,20 +40,20 @@
         <div class="endBlock endBlockBig">
             <div class="endStat endStatBig" id="endWPM"></div>
             <div class="endDesc endDescBig">Words Per Minute</div>
-        </div>      
+        </div>
         <div class="endBlock">
             <div class="endStat" id="endAcc"></div>
             <div class="endDesc">Accuracy</div>
-        </div>  
+        </div>
     </div>
     <div class="choices endChoices">
         <div class="choiceBlock" onclick="retry()">
             <img src="img/ic_restart.png" class="choiceIcon" alt="restart">
-            <div class="choice">Retry</div>
+            <div class="choice">Retry (R)</div>
         </div>
         <div class="choiceBlock" onclick="endToMenu()">
             <img src="img/ic_menu.png" class="choiceIcon" alt="menu">
-            <div class="choice">Menu</div>
+            <div class="choice">Menu (M)</div>
         </div>
     </div>
 </div>
@@ -63,22 +63,22 @@
     <div class="choices" id="choices">
         <div class="choiceBlock" onclick="restart()">
             <img src="img/ic_restart.png" class="choiceIcon" alt="restart">
-            <div class="choice">Restart</div>
+            <div class="choice">Restart (R)</div>
         </div>
         <div class="choiceBlock" id="resume" onclick="resume()">
             <img src="img/ic_resume.png" class="choiceIcon" alt="resume">
-            <div class="choice">Resume</div>
+            <div class="choice">Resume (Esc)</div>
         </div>
         <div class="choiceBlock" onclick="pauseToMenu()">
             <img src="img/ic_quit.png" class="choiceIcon" alt="quit">
-            <div class="choice">Quit</div>
+            <div class="choice">Quit (Q)</div>
         </div>
     </div>
 </div>
 
 <div class="categories" id="categories">
     <h1 id="catTitle">Pick A Category</h1>
-    <h1 id="backTitle" onclick="catToMenu()">Back</h1>
+    <h1 id="backTitle" onclick="catToMenu()">Back (Esc)</h1>
     <div class="search">
         <div class="searchBar">
             <img src="img/ic_search.png" class="searchIcon" onclick="$('#searchInput').focus();" alt="search">
@@ -88,7 +88,7 @@
             <div class="cat" onmouseenter="$('#playArrow').show();" onmouseleave="$('#playArrow').hide();">
                 <div class="catName"></div>
                 <div class="playArrow" id="playArrow" onmouseenter="$('#play').show();" onmouseleave="$('#play').hide();"></div>
-                <div class="catName play" id="play">Play</div>              
+                <div class="catName play" id="play">Play</div>
             </div>
         </div>
     </div>

@@ -95,7 +95,7 @@ div.screen {
     left: 0;
     right: 0;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     position: absolute;
     background-color: rgb(249, 105, 14);
     box-sizing: border-box;
@@ -119,7 +119,7 @@ div.screen {
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     cursor: pointer;
-    cursor: hand;   
+    cursor: hand;
 }
 
 .downArrow {
@@ -197,7 +197,7 @@ div.screen {
     padding-bottom: 17px;
     box-sizing: border-box;
     height: 100%;
-    width: 100%;    
+    width: 100%;
 }
 
 .input {
@@ -243,6 +243,7 @@ div.screen {
     cursor: pointer;
     cursor: hand;
     display: inline-block;
+    text-align: center;
     }
 
     .choiceBlock:hover {
@@ -281,7 +282,7 @@ div.screen {
     left: 0;
     right: 0;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     position: absolute;
     background-color: rgb(249, 105, 14);
     width: 790px;
@@ -291,7 +292,7 @@ div.screen {
 
 h1#catTitle {
     font-size: 35px;
-    width: 80%;
+    width: 70%;
     padding-left: 45px;
     float: left;
     text-align: left;
@@ -302,7 +303,7 @@ h1#backTitle {
     float: right;
     padding-right: 45px;
     text-align: right;
-    width: 20%;
+    width: 30%;
     cursor: pointer;
     cursor: hand;
 }
@@ -328,7 +329,7 @@ h1#backTitle {
     border: none;
     font-size: 30px;
     resize: none;
-    outline: none; 
+    outline: none;
 }
 
 .searchIcon {
@@ -353,9 +354,9 @@ h1#backTitle {
     padding-right: 20px;
     }
 
-    .cat:hover {
-        background-color: Gold;
-    }
+.catHover {
+    background-color: Gold;
+}
 
 .catName {
     line-height: 40px;
