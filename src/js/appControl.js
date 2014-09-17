@@ -333,17 +333,26 @@ function startGame(paras) {
         var start = Math.floor(Math.random() * sentences.length);
         var test = "";
 
+        // Adding a skip flag to generate some 'randomness'
+        // There is a 50% chance that even if a sentence fits, it will be skipped
+        // Creates more variety
+        var skip;
+
         // start to end
         for (var i = start ; i < sentences.length ; i++) {
-            // +1 account for space between sentences.
-            if (test.length + sentences[i].length + 1 <= MAX_CHARS) {
+            skip = Math.random() >= 0.5;
+
+            // +1 to account for space between sentences.
+            if (test.length + sentences[i].length + 1 <= MAX_CHARS && !skip) {
                 test+=" "+sentences[i];
             }
         }
 
         // beginning of sentences to start
         for (var i = 0 ; i < start ; i++) {
-            if (test.length + sentences[i].length + 1 <= MAX_CHARS) {
+            skip = Math.random() >= 0.5;
+
+            if (test.length + sentences[i].length + 1 <= MAX_CHARS && !skip) {
                 test+=" "+sentences[i];
             }
         }
