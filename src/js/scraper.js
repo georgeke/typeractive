@@ -1,5 +1,5 @@
 Scraper = {
-    base: 'http://en.wikipedia.org/w/api.php?format=json&callback=?',
+    base: 'http://en.wikipedia.org/w/api.php?format=json&callback=?&redirects',
     paras: null,
 
     /***
