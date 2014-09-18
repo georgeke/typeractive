@@ -113,7 +113,7 @@ function keyBindFunc(e) {
             } else if (key === 13) {
                 if (choiceIndex >= 0) {
                     debugger;
-                    if ($('#searchInput').html != "") {
+                    if ($('#searchInput').val() != "") {
                         startCat(catFilterList[choiceIndex]);
                     } else {
                         startCat(catNameList[choiceIndex]);
