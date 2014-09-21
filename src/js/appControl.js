@@ -1,4 +1,4 @@
-var MAX_CHARS = 400;
+var MAX_CHARS = 300;
 var MAX_REROLL = 50;
 var paused = true;
 var timer;
@@ -112,7 +112,6 @@ function keyBindFunc(e) {
                 }
             } else if (key === 13) {
                 if (choiceIndex >= 0) {
-                    debugger;
                     if ($('#searchInput').val() != "") {
                         startCat(catFilterList[choiceIndex]);
                     } else {
@@ -121,7 +120,6 @@ function keyBindFunc(e) {
                 }
             } else if (key === 9) {
                 e.preventDefault();
-                debugger;
                 if ($('#searchInput').is(':focus')) {
                     $('#searchInput').blur();
                 } else {
@@ -152,6 +150,7 @@ function pauseMenu() {
     pauseTimer();
     $('#main').hide();
     $('#pause').show();
+    debugger;
     $('#input').blur();
 }
 
@@ -195,7 +194,7 @@ function getEndMessage(wpm) {
         );
     } else if (wpm <= 80) {
         return getRandomMessage(
-            ["Legit!", "Nice!", "You rock!", "Tell em'!", "That's it!"]
+            ["Quick!", "Legit!", "Nice!", "You rock!", "Tell em'!", "That's it!"]
         );
     } else if (wpm <= 98) {
         return getRandomMessage(
@@ -211,7 +210,7 @@ function getEndMessage(wpm) {
         );
     } else {
         return getRandomMessage(
-            ["You're a MONSTER!", "Are you human??", "Cowabunga~"]
+            ["You're a MONSTER!", "Are you human??", "Cowabunga~", "<(^o^*)>"]
         );
     }
 }
@@ -323,7 +322,10 @@ function pauseToMenu() {
 }
 
 function resume() {
-    startTimer()
+    // Only start timer it was previously started already
+    if ($('#time').html() !== "0:00") {
+        startTimer();
+    }
     $('#pause').hide();
     $('#main').show();
     $('#input').focus();

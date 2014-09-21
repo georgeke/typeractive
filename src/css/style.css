@@ -1,6 +1,11 @@
 /**
  * General
  */
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
 html, textarea, img, div, * {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
