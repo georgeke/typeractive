@@ -357,9 +357,9 @@ function showCategories(cats) {
 
         // Simpler to do this than to parse DOM elements.
         var item = "";
-        item += '<div class="cat" id="cat'+i+'" onmouseenter="onHoverCat('+i+');" onmouseleave="onLeaveCat('+i+');choiceIndex=-1;">';
+        item += '<div class="cat" id="cat'+i+'" onmouseenter="onHoverCat('+i+');" onmouseleave="onLeaveCat('+i+');$(\'#cat\'+choices[choiceIndex]).removeClass(\'catHover\');$(\'#playArrow\'+choices[choiceIndex]).hide();choiceIndex=-1;" onclick="startCat(\''+cat+'\')">';
         item += '<div class="catName">'+cat.replace(/_/g, " ")+'</div>';
-        item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();" onclick="startCat(\''+cat+'\')"></div>';
+        item += '<div class="playArrow" id="playArrow'+i+'" onmouseenter="$(\'#play'+i+'\').show();" onmouseleave="$(\'#play'+i+'\').hide();"></div>';
         item += '<div class="catName play" id="play'+i+'">Play</div>';
         item += '</div>';
         newHTML += item;
@@ -371,15 +371,16 @@ function showCategories(cats) {
 }
 
 function onHoverCat(i) {
-    if ($("#searchInput").is(":not(:focus)")) {
-        // Remove highlight of previous cat
-        $('#cat'+choiceIndex).removeClass('catHover');
-        $('#playArrow'+choiceIndex).hide();
+    // Remove highlight of previous cat
+    $('#cat'+choices[choiceIndex]).removeClass('catHover');
+    $('#playArrow'+choices[choiceIndex]).hide();
 
+    if ($('#searchInput').val() === "") {
         this.choiceIndex = i;
-        $('#playArrow'+i).show();
-        $('#cat'+i).addClass('catHover');
     }
+
+    $('#playArrow'+i).show();
+    $('#cat'+i).addClass('catHover');
 }
 
 function onLeaveCat(i) {

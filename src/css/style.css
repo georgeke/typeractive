@@ -367,6 +367,7 @@ h1#backTitle {
     height: 30px;
     padding: 10px;
     padding-right: 20px;
+    cursor: pointer;
     }
 
 .catHover {
@@ -379,6 +380,7 @@ h1#backTitle {
     font-family: "Helvetica Neue", Helvetica, Sans-serif;
     color: white;
     float: left;
+    cursor: pointer;
 }
 
 .play {
