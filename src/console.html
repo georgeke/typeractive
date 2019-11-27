@@ -16,9 +16,9 @@
 		<li>Wikipedia article name (from URL) WITHOUT spaces (use _)</li>
 		<li>list of article names separated by spaces</li>
 	</ol>
-	<form>
-		Article(s): <input type="text" id="urlForm"></input>
-	</form>
+	<div>
+		Article(s): <textarea input type="text" id="urlForm" cols="62" rows="6"></textarea>
+	</div>
 	<button value="Go" onclick="Scraper.parseInput()"><p>Retrieve articles</p></button>
 	<button value="Q" onclick="Scraper.displayJSON()"><p>Show retrieved article JSON</p></button>
 	<button value="D" onclick="Scraper.downloadJSON()"><p>Download retrieved article JSON</p></button>
