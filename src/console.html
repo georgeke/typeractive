@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<title>Typeractive DB Console</title>
 	<script src="js/scraper.js"></script>
-	<script src="js/DBReader.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
@@ -20,8 +19,8 @@
 	<form>
 		Page(s): <input type="text" id="urlForm"></input>
 	</form>
-	<button value="Go" onclick="Scraper.parseInput()"><p>Enter</p></button>
-	<button value="Q" onclick="Reader.readDB()"><p>Query</p></button>
+	<button value="Go" onclick="Scraper.parseInput()"><p>Retrieve articles</p></button>
+	<button value="Q" onclick="Scraper.displayJSON()"><p>Show retrieved article JSON</p></button>
 	<p id="output"></p>
 	<p id="msg"></p>
 </article>
