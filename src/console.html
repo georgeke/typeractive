@@ -17,10 +17,11 @@
 		<li>list of article names separated by spaces</li>
 	</ol>
 	<form>
-		Page(s): <input type="text" id="urlForm"></input>
+		Article(s): <input type="text" id="urlForm"></input>
 	</form>
 	<button value="Go" onclick="Scraper.parseInput()"><p>Retrieve articles</p></button>
 	<button value="Q" onclick="Scraper.displayJSON()"><p>Show retrieved article JSON</p></button>
+	<button value="D" onclick="Scraper.downloadJSON()"><p>Download retrieved article JSON</p></button>
 	<p id="output"></p>
 	<p id="msg"></p>
 </article>
