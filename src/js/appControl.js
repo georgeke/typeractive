@@ -152,7 +152,6 @@ function pauseMenu() {
     pauseTimer();
     $('#main').hide();
     $('#pause').show();
-    debugger;
     $('#input').blur();
 }
 
