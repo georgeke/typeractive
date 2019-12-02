@@ -191,7 +191,7 @@ function getEndMessage(wpm) {
         return "Good!";
     } else if (wpm <= 70) {
         return getRandomMessage(
-            ["Not bad!", "Go get it!", "Sauve!", "Cool!"]
+            ["Not bad!", "Go get it!", "Suave!", "Cool!"]
         );
     } else if (wpm <= 80) {
         return getRandomMessage(
@@ -289,7 +289,7 @@ function updateTest(input) {
     $('#wpm').html(wpm);
 
     // Accuracy: Mistakes / Net chars typed
-    var acc = (100 - (this.mistakes/this.charsTyped)).toFixed(1);
+    var acc = (100 - (this.mistakes * 100 / this.charsTyped)).toFixed(2);
     if (!isFinite(acc) || acc === 100) {
         acc = 100;
     }
