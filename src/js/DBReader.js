@@ -5,7 +5,6 @@ Reader = {
         $('#loading').show();
         $.getJSON("res/db.json", function(data) {
             this.data = data;
-            console.log(this)
             $('#loading').hide();
         }.bind(this));
     },
