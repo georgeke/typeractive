@@ -1,4 +1,15 @@
 Reader = {
+    data: {},
+
+    loadDB: function() {
+        $('#loading').show();
+        $.getJSON("res/db.json", function(data) {
+            this.data = data;
+            console.log(this)
+            $('#loading').hide();
+        }.bind(this));
+    },
+
     readDB: function(cat) {
         $('#loading').show();
 
@@ -8,40 +19,29 @@ Reader = {
             var articleName = $('#urlForm').val();
         }
 
-        var payload = {
-            collection: articleName
-        };
-
         $('#loading').show();
-        $.getJSON("res/dbFunc.php", payload, function(data) {
-            var text = "";
-            var paras = [];
-            for (key in data) {
-                text += data[key] + "<br /><br />";
-                paras.push(data[key]);
-            }
-            if (cat) {
-                startGame(paras);
-            } else {
-                $('#output').html(text);
-            }
-            $('#loading').hide();
-        });
+        var text = "";
+        var paras = this.data[articleName];
+        for (let para of paras) {
+            text += para + "<br /><br />";
+        }
+        if (cat) {
+            startGame(paras);
+        } else {
+            $('#output').html(text);
+        }
+        $('#loading').hide();
     },
 
     loadCats: function() {
         $('#loading').show();
-        $.getJSON("res/dbFunc.php", "all=1", function(data) {
-            showCategories(data);
-            $('#loading').hide();
-        });
+        showCategories(Object.keys(this.data));
+        $('#loading').hide();
     },
 
     getCats: function() {
         $('#loading').show();
-        $.getJSON("res/dbFunc.php", "all=1", function(data) {
-            playRandom(data);
-            $('#loading').hide();
-        });
+        playRandom(Object.keys(this.data));
+        $('#loading').hide();
     }
 }

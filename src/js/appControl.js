@@ -28,6 +28,8 @@ function resetGame() {
 }
 
 function setup() {
+    Reader.loadDB();
+
     // Binding key shortcuts
     $(document).keydown(keyBindFunc);
 
@@ -154,7 +156,7 @@ function pauseMenu() {
     $('#input').blur();
 }
 
-    // Timer
+// Timer
 function updateTimer() {
     var time = $("#time").html();
     var m = time.split(":")[0];
@@ -224,7 +226,7 @@ function getRandomMessage(msgs) {
     }
 }
 
-    // During the test
+// During the test
 function updateTest(input) {
     // input !== "": When placeholder is set, IE triggers the oninput... nice.
     if (this.paused && input !== "") {
@@ -240,7 +242,7 @@ function updateTest(input) {
 
             // Ending the game.
             if (i===test.length-1) {
-                // Or else you cen keep typing...
+                // Or else you can keep typing...
                 $('#input').blur();
 
                 clearTimeout(timer);
@@ -314,7 +316,7 @@ function goToCat() {
     }
 }
 
-//Pause
+// Pause
 function pauseToMenu() {
     $('#menu').show();
     $('#pause').hide();
