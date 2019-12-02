@@ -1,13 +1,12 @@
 Typeractive
 ===========
 
-Typing speed test with hundreds of categories.
+Typing speed test with hundreds of categories generated from Wikipedia.
 
 ### [Play it here](http://georgeke.com/projects/typeractive/src/)
 
-Preview:
 ![mainscreen](http://georgeke.com/assets/img/portfolio/typeractive_01.png)
 
-Development
+# Development
 
 `python -m SimpleHTTPServer 9000`
