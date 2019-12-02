@@ -3,10 +3,10 @@ Typeractive
 
 Typing speed test with hundreds of categories.
 
-### [Play it here](http://www.georgeke.com/typeractive/)
+### [Play it here](http://georgeke.com/projects/typeractive/src/)
 
 Preview:
-![mainscreen](http://georgeke.com/img/portfolio/typeractive_01.png)
+![mainscreen](http://georgeke.com/assets/img/portfolio/typeractive_01.png)
 
 Development
 
