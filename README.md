@@ -10,3 +10,5 @@ Typing speed test with hundreds of categories generated from Wikipedia.
 # Development
 
 `python -m SimpleHTTPServer 9000`
+
+`git subtree pull --prefix=projects/typeractive typeractive master --squash`
